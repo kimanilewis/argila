@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="InfoLogFile">/var/log/applications/Argila/PoSManager/Info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/Argila/PoSManager/Error.log</entry>
+    <!-- Application configs -->
+    <entry key="NumberOfThreads">1</entry>
+    <entry key="QueryLimit">1</entry>
+    <entry key="ConnectionTimeout">30000</entry>
+    <entry key="ReplyTimeout">90000</entry>
+    <entry key="SleepTime">10</entry>
+    <entry key="ApplicationName">PosManager</entry>
+    <entry key="MaximumFailedQueryRetries">5</entry>
+    <entry key="FAILED_QUERY_FILE">FAILED_QUERIES.TXT</entry>
+
+
+    <!-- Database connection configs -->
+    <entry key="DbPoolName">PosManager</entry>
+    <entry key="DbUserName">root</entry>
+    <entry key="DbPassword">lewie</entry>
+    <entry key="DbHost">localhost</entry>
+    <entry key="DbPort">3306</entry>
+    <entry key="DbName">argila</entry>
+    <entry key="DbMaxConnections">100</entry>
+
+    <entry key="Processing">1</entry>
+    <entry key="UnProcessed">0</entry>
+    <entry key="Processed">2</entry>
+    <entry key="ProcessingFinished">3</entry>
+    
+    <!--min amd max time-->
+    <entry key="MaxTime">4</entry>
+    <entry key="MinTime">2</entry>
+   
+    <!--<entry key="BeepJsonAPI">http://10.250.250.178:9001/hub/services/paymentGateway/XML/Validation.php</entry>-->
+    <entry key="BeepJsonAPI">http://localhost/BeepJsonAPI/Validation.php</entry>
+    <entry key="RaiseInvoiceAPI">http://localhost/BeepXmlAPI/</entry>
+    <entry key="RaiseInvoiceFunction">BEEP.raiseInvoice</entry>
+    <!-- Implicit Attribute Mula application Keys (Mula web, mula app and mula ussd) -->
+    <entry key="ImplicitAttributeKey">64,65,66,67</entry>
+
+    <!-- cost of time per minute in KES -->
+    <entry key="CostOfTimePerMinute">10</entry>
+    
+    <entry key="NotifyCustomer">TRUE</entry>
+
+    <!--Beep Credentials-->
+    <entry key="BeepUsername">cellulantApiUser</entry>
+    <entry key="BeepPassword">cc17b946d69dfb1c0931eee6383566c7</entry>
+
+    <!-- ***************************************************-->
+    <!-- *** The properties below are not bound to change **-->
+    <!-- *** Unless the API changes. Pleasesdont touch if **-->
+    <!-- **** if you have no idea of what is they mean. ****-->
+    <!-- ***************************************************-->
+
+    <!-- Secret Key and Intialization vector used to decode encrypted passwords -->
+    <entry key="IntializationVector">8228b9a98ca15318</entry>
+    <entry key="EncryptionKey">3c6e0b8a9c15224a</entry>
+
+    <entry key="AppDataOriginID">1</entry>
+    <entry key="ConnectorRule">102</entry>
+
+    <!-- Authentication Status codes returned from the API -->
+    <entry key="AuthenticationSuccess">131</entry>
+
+    <!-- New payment status statuses on overall status-->
+    <entry key="NewInvoice">130</entry>
+
+    <!-- New payment status statuses on overall status-->
+    <entry key="BillQuerySuccess">308</entry>
+
+    <entry key="DaysBeforeBillDueDate">5</entry>
+    <entry key="DaysAfterBillDueDate">5</entry>
+    <!--limit in days in days-->
+    <entry key="RefreshDaysInterval">1</entry>
+
+    <!-- This date is cummulative of days after due date-->
+    <entry key="DaysAfterActiveBillDueDate">15</entry>
+
+    <!-- -->
+    <entry key="DaysAfterLastFetch">5</entry>
+
+    <!--Days valid to raise an overdue invoice -->
+    <entry key="RaiseInvoicePeriod">5</entry>
+    
+    <entry key="CanRemind">1</entry>
+    <entry key="ResetCanRemind">0</entry>
+    <entry key="IsRefreshed">1</entry>
+    
+    <!--minimum amout for raising invoice-->
+    <entry key="RaiseInvoiceMinAmount">100</entry>
+    
+    <!-- This date to add on the due date to set expiry date-->
+    <entry key="ExpiryDaysAfterDueDate">5</entry>
+    <entry key="ConnectionRetrySleep">1000</entry>
+</properties>
