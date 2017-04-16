@@ -185,11 +185,12 @@ public final class FetchAccounts {
                  * finish all existing threads in the queue.
                  */
                 shutdownAndAwaitTermination(executor);
-            } else {
-                logging.info(CoreUtils.getLogPreString()
-                        + "No records were fetched "
-                        + "from the DB for processing...");
             }
+            /**
+             * else { logging.info(CoreUtils.getLogPreString() + "No records
+             * were fetched " + "from the DB for processing...");
+            }
+             */
         } catch (SQLException e) {
             logging.error(CoreUtils.getLogPreString() + "Failed to "
                     + "fetch Bucket: Select Query: "

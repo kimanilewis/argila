@@ -77,7 +77,7 @@ public class TestPC {
         log.info("Initialization Complete");
         while (true) {
 
-            log.info("oooooooooooooooooooooooooooooo");
+          //  log.info("oooooooooooooooooooooooooooooo");
 
             try {
                 fetchAccounts.runDaemon();

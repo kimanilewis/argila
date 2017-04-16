@@ -1,8 +1,8 @@
 /**
  * To change this license header, choose License Headers in Project Properties
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- * 
+ * To change this template file, choose Tools | Templates and open the template
+ * in the editor.
+ *
  * @auther Lewis Kimani <kimanilewi@gmail.com>
  */
 package com.argila.coreUpdater;
@@ -152,7 +152,7 @@ public final class CoreUpdaterJob implements Runnable {
                     + ", TimeSpent: " + accounts.getTimeSpent()
                     + ", AmountSpent: " + accounts.getAmountSpent()
                     + ", AmountBalance: " + accounts.getAmountBalance()
-                    + ", Payload: " + payload);
+                    + ", Payload: ");
 
             httppost = new HttpPost(payload);
             httppost.setHeader("Authorization", props.getAuthorizationKey());
@@ -163,10 +163,8 @@ public final class CoreUpdaterJob implements Runnable {
                     props.getReplyTimeout());
             httpclient = new DefaultHttpClient(httpParams);
 
-            logging.info(logPreString + "Formulating post to API "
-                    + "httppost - " + httppost.toString());
-            logging.info(logPreString + "Formulating post to API "
-                    + "entity to send - " + payload);
+            logging.info(logPreString + "Formulating post to API: "
+                    + "URL to invoke - " + props.getCoreAPI());
             // Execute and get the response
             response = httpclient.execute(httppost);
 
@@ -367,12 +365,6 @@ public final class CoreUpdaterJob implements Runnable {
         JSONObject payloadObj = new JSONObject(fullPayload);
         finalPayload.put("payload", String.valueOf(payloadObj));
         payload = String.valueOf(packet);
-        long timeStamp = System.currentTimeMillis();
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeZone(TimeZone.getTimeZone("UTC"));
-        SimpleDateFormat sDateFormat
-                = new SimpleDateFormat("yyyy:MM:dd:HH:mm:ss:sss");
-        String timestampDate = cal.getTime().toString();
 
         TimeZone timeZone = TimeZone.getTimeZone("UTC");
         Calendar calendar = Calendar.getInstance(timeZone);
@@ -380,11 +372,6 @@ public final class CoreUpdaterJob implements Runnable {
                 = new SimpleDateFormat("yyyy:MM:dd:HH:mm:ss:sss");
         sDFormat.setTimeZone(timeZone);
         String timestampDateString = sDFormat.format(calendar.getTime());
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.0Z'");
-//       
-//        Date date = sdf.parse(String.valueOf(timeStamp));
-        // long timestampDate = date.getTime();
 
         String action;
         if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() < 0) {
@@ -392,6 +379,9 @@ public final class CoreUpdaterJob implements Runnable {
         } else {
             action = Constants.ACTION_STOP;
         }
+
+        logging.info(logPreString
+                + "Message Type " + action);
         String url = props.getCoreAPI();
         String payloadString = "?accountNumber="
                 + accounts.getAccountNumber() + "&amountBalance="

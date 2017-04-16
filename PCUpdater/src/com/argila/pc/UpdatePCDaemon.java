@@ -61,7 +61,7 @@ public final class UpdatePCDaemon implements Daemon, Runnable {
             props = new Props();
             log = new Logging(props);
             log.info(CoreUtils.getLogPreString() + "init() |"
-                    + " Initializing Bill Fetcher daemon...");
+                    + " Initializing PC Updater Application...");
 
             mysql = new MySQL(props.getDbHost(), props.getDbPort(),
                     props.getDbName(), props.getDbUserName(),
@@ -88,7 +88,7 @@ public final class UpdatePCDaemon implements Daemon, Runnable {
     public void start() {
         working = true;
         worker.start();
-        log.info("Starting BillFetcher daemon...");
+        log.info("Starting PC Updater Application....");
     }
 
     /**
@@ -97,7 +97,7 @@ public final class UpdatePCDaemon implements Daemon, Runnable {
     @Override
     @SuppressWarnings("SleepWhileInLoop")
     public void stop() {
-        log.info("Stopping BillFetcher daemon...");
+        log.info("Stopping PC Updater Application....");
 
         working = false;
 
@@ -122,7 +122,7 @@ public final class UpdatePCDaemon implements Daemon, Runnable {
      */
     @Override
     public void destroy() {
-        log.info("Destroying BillFetcher daemon...");
+        log.info("Destroying PC Updater Application....");
         log.info("Exiting...");
     }
 

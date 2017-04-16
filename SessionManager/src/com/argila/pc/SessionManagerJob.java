@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.json.JSONObject;
-import sun.security.krb5.Confounder;
 
 /**
  *
@@ -83,7 +82,7 @@ public final class SessionManagerJob implements Runnable {
     }
 
     private void updateTransaction() {
-
+        int status;
         String[] params = {
             String.valueOf(accounts.getAmountBalance()),
             String.valueOf(props.getFinishedProcessedStatus()),
@@ -91,6 +90,11 @@ public final class SessionManagerJob implements Runnable {
             String.valueOf(accounts.getAvailableTime()),
             String.valueOf(accounts.getCustomerProfileID())
         };
+        if (accounts.getTimeSpent() == 0) {
+            status = props.getProcessedStatus();
+        } else {
+            status = props.getFinishedProcessedStatus();
+        }
 
         String query = "UPDATE customerProfiles cp "
                 + " INNER JOIN customerProfileAccounts cpa "
@@ -103,7 +107,7 @@ public final class SessionManagerJob implements Runnable {
                 PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setDouble(1, accounts.getAmountBalance());
             stmt.setInt(2, props.getFinishedProcessedStatus());
-            stmt.setInt(3, props.getFinishedProcessedStatus());
+            stmt.setInt(3, status);
             stmt.setInt(4, accounts.getAvailableTime());
             stmt.setInt(5, accounts.getCustomerProfileID());
 
@@ -250,9 +254,9 @@ public final class SessionManagerJob implements Runnable {
             if (accounts.getProfileStatus() == props.getProcessedStatus()) {
                 long timeDiff = sessionExpiryTime.getTime() - sessionStartTime.getTime();
                 /*get time in minutes*/
-                long minutesSpent = TimeUnit.MILLISECONDS.toMinutes(timeDiff);
+                long minutesSpent = TimeUnit.MILLISECONDS.toSeconds(timeDiff);
                 accounts.setTimeSpent(minutesSpent);
-                double amountSpent = minutesSpent * props.getCostOfTimePerMinute();
+                double amountSpent = minutesSpent * (props.getCostOfTimePerMinute() / 60);
                 long timeLeft = accounts.getAvailableTime() - minutesSpent;
                 accounts.setAvailableTime((int) timeLeft);
 

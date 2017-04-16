@@ -112,7 +112,8 @@ public final class FetchAccounts {
                     + " FROM customerProfileAccounts cpa "
                     + " INNER JOIN customerProfiles cp "
                     + " ON cpa.customerProfileID = cp.customerProfileID  "
-                    + " WHERE cpa.processingStatus IN (?,?) ";
+                    + " WHERE cpa.processingStatus IN (?) or"
+                    + " cpa.expiryTime <= NOW() AND cpa.processingStatus = ? ";
 
             stmt = conn.prepareStatement(cpaQuery);
             stmt.setInt(1, props.getProcessingStatus());
@@ -188,11 +189,12 @@ public final class FetchAccounts {
                  * finish all existing threads in the queue.
                  */
                 shutdownAndAwaitTermination(executor);
-            } else {
-                logging.info(CoreUtils.getLogPreString()
-                        + "No expired or terminated accounts records were fetched "
-                        + "from the DB for processing...");
             }
+//            else {
+//                logging.info(CoreUtils.getLogPreString()
+//                        + "No expired or terminated accounts records were fetched "
+//                        + "from the DB for processing...");
+//            }
         } catch (SQLException e) {
             logging.error(CoreUtils.getLogPreString() + "Failed to "
                     + "fetch Bucket: Select Query: "

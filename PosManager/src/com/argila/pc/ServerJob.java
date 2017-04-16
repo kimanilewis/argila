@@ -88,32 +88,40 @@ public class ServerJob implements Runnable {
                 batteryLevel = messageString.substring(messageString.length() - 3);
                 logging.info(CoreUtils.getLogPreString() + "init() |"
                         + " Request was processed: Battery level received is.." + batteryLevel);
-                int response = checkAccountValidity(accountNumber);
-                if (response < 0) {
+                int responseTime = checkAccountValidity(accountNumber);
+                int response = responseTime / 60;
+                int maxTime = props.getMaxTime() / 60;
+                int minTime = props.getMinTime() / 60;
+                logging.info(CoreUtils.getLogPreString() + "init() |"
+                        + " Response is.." + response
+                        + " maxTime is.." + maxTime
+                        + " minTime is.." + minTime
+                );
+                if (responseTime == -1) {
                     triggerStopSession();
                     outPutString = "SC9999Z";
-                } else if (response > props.getMaxTime() && props.getMaxTime() < 10) {
+                } else if (response > maxTime && maxTime < 10) {
 
                     accountsData.setAvailableTime(String.valueOf(props.getMaxTime()));
                     updateProcessingState();
-                    outPutString = "SC000" + String.valueOf(props.getMaxTime() + "Z");
+                    outPutString = "SC000" + String.valueOf(maxTime + "Z");
                     updateProcessingState();
 
-                } else if (response > props.getMaxTime() && props.getMaxTime() > 9) {
+                } else if (response >= maxTime && maxTime > 9) {
                     accountsData.setAvailableTime(String.valueOf(props.getMaxTime()));
                     updateProcessingState();
-                    outPutString = "SC00" + String.valueOf(props.getMaxTime() + "Z");
+                    outPutString = "SC00" + String.valueOf(maxTime + "Z");
                     updateProcessingState();
 
-                } else if (response < props.getMaxTime()
-                        && response > props.getMinTime() && response > 9) {
-                    accountsData.setAvailableTime(String.valueOf(props.getMinTime()));
+                } else if (response < maxTime
+                        && response >= minTime && response > 9) {
+                    accountsData.setAvailableTime(String.valueOf(response * 60));
                     updateProcessingState();
 
                     outPutString = "SC00" + String.valueOf(response + "Z");
-                } else if (response < props.getMaxTime()
-                        && response > props.getMinTime() && response < 9) {
-                    accountsData.setAvailableTime(String.valueOf(props.getMinTime()));
+                } else if (response < maxTime
+                        && response >= minTime && response < 9) {
+                    accountsData.setAvailableTime(String.valueOf(response * 60));
                     updateProcessingState();
 
                     outPutString = "SC000" + String.valueOf(response + "Z");
@@ -260,25 +268,6 @@ public class ServerJob implements Runnable {
             Logger.getLogger(ServerJob.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             isCurrentPoolShutDown = true;
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException sqlex) {
-                    logging.error(CoreUtils.getLogPreString()
-                            + "Error closing statement: "
-                            + sqlex.getMessage());
-                }
-            }
-
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException sqlex) {
-                    logging.error(CoreUtils.getLogPreString()
-                            + "Failed to close statement: "
-                            + sqlex.getMessage());
-                }
-            }
         }
         return time;
 
@@ -305,10 +294,10 @@ public class ServerJob implements Runnable {
         query = "UPDATE customerProfileAccounts "
                 + " SET "
                 + " startTime = NOW(), processingStatus = ?,"
-                + " expiryTime = DATE_ADD( NOW(), INTERVAL ? MINUTE)"
+                + " expiryTime = DATE_ADD( NOW(), INTERVAL ? SECOND)"
                 + " WHERE customerProfileAccountID = ? ";
         String[] params = {
-            String.valueOf(props.getProcessingStatus()),
+            String.valueOf(props.getProcessedStatus()),
             accountsData.getAvailableTime(),
             String.valueOf(accountsData.getCustomerProfileAccountID())
         };

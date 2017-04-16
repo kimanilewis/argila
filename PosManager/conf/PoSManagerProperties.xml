@@ -32,8 +32,8 @@
     <entry key="ProcessingFinished">3</entry>
     
     <!--min amd max time-->
-    <entry key="MaxTime">4</entry>
-    <entry key="MinTime">2</entry>
+    <entry key="MaxTime">240</entry>
+    <entry key="MinTime">120</entry>
    
     <!--<entry key="BeepJsonAPI">http://10.250.250.178:9001/hub/services/paymentGateway/XML/Validation.php</entry>-->
     <entry key="BeepJsonAPI">http://localhost/BeepJsonAPI/Validation.php</entry>

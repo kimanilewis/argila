@@ -89,6 +89,9 @@ public final class ServerPool implements Runnable {
 
         }
         threadPool.shutdown();
+        logging.info(CoreUtils.getLogPreString()
+                + "Server Stopped. ..."
+                + "\n ");
         System.out.println("Server Stopped.");
     }
 

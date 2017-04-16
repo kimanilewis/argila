@@ -162,7 +162,7 @@ public final class CoreUtils {
      * @param log log class instance
      */
     public static void updateFailedQueriesFile(final String file,
-            final String data, final Logging log) {
+       final String data, final Logging log) {
         log.info(CoreUtils.getLogPreString() + "Writing failed query: [" + data
                 + "] to file: " + file);
 

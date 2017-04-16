@@ -13494,3 +13494,819 @@ Daemon started successfully
 java_start done
 Waiting for a signal to be delivered
 create_tmp_file: /tmp/14562.jsvc_up
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x14BD3270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=4115" (0x00000000)
+|   "-Dcommons.daemon.process.parent=4114" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/4115.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/4115.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x898D6270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=4895" (0x00000000)
+|   "-Dcommons.daemon.process.parent=4894" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/4895.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/4895.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xC8F08270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=5414" (0x00000000)
+|   "-Dcommons.daemon.process.parent=5413" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/5414.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/5414.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x1E9C9270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=5651" (0x00000000)
+|   "-Dcommons.daemon.process.parent=5650" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/5651.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/5651.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x5C353270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=5876" (0x00000000)
+|   "-Dcommons.daemon.process.parent=5875" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/5876.jsvc_up
+Switching umask back to 002 from 077
+Cannot open PID file /var/run/PoSManager.pid, PID is 19598
+Service exit with a return value of 255
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x00BE1270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=19648" (0x00000000)
+|   "-Dcommons.daemon.process.parent=19647" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/19648.jsvc_up
+Switching umask back to 022 from 077
+Still running according to PID file /var/run/PoSManager.pid, PID is 19648
+Service exit with a return value of 122
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/19648.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x0DEA8270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=7917" (0x00000000)
+|   "-Dcommons.daemon.process.parent=7916" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/7917.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/7917.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x07AC5270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=8220" (0x00000000)
+|   "-Dcommons.daemon.process.parent=8219" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/8220.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/8220.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x313D3270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=8951" (0x00000000)
+|   "-Dcommons.daemon.process.parent=8950" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/8951.jsvc_up
+Switching umask back to 022 from 077
+Still running according to PID file /var/run/PoSManager.pid, PID is 8951
+Service exit with a return value of 122
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/8951.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xC5957270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=9077" (0x00000000)
+|   "-Dcommons.daemon.process.parent=9076" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/9077.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/9077.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x262D4270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=9294" (0x00000000)
+|   "-Dcommons.daemon.process.parent=9293" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/9294.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/9294.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xDB1E9270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=9719" (0x00000000)
+|   "-Dcommons.daemon.process.parent=9718" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/9719.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/9719.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x2D9CC270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=9941" (0x00000000)
+|   "-Dcommons.daemon.process.parent=9940" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/9941.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/9941.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x6EBDA270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=10236" (0x00000000)
+|   "-Dcommons.daemon.process.parent=10235" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/10236.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/10236.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x19FE8270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=10431" (0x00000000)
+|   "-Dcommons.daemon.process.parent=10430" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/10431.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/10431.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xA8470270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=10627" (0x00000000)
+|   "-Dcommons.daemon.process.parent=10626" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/10627.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/10627.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x65195270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=10847" (0x00000000)
+|   "-Dcommons.daemon.process.parent=10846" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/10847.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/10847.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x5862C270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=11153" (0x00000000)
+|   "-Dcommons.daemon.process.parent=11147" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/11153.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/11153.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x9AA96270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=11533" (0x00000000)
+|   "-Dcommons.daemon.process.parent=11532" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/11533.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/11533.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xB77DB270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=12289" (0x00000000)
+|   "-Dcommons.daemon.process.parent=12288" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/12289.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/12289.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xA6E44270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=12335" (0x00000000)
+|   "-Dcommons.daemon.process.parent=12334" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/12335.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/12335.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x9544C270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PosManager/dist/PosManager.jar:/srv/applications/Argila/services/PosManager/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-codec-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-dbcp-1.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-httpclient-3.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-logging-1.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/commons-pool-1.6.jar:/srv/applications/Argila/services/PosManager/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/gson-2.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-4.2.5.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.4.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpcore-4.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/httpmime-4.2.1.jar:/srv/applications/Argila/services/PosManager/dist/lib/json.jar:/srv/applications/Argila/services/PosManager/dist/lib/log4j-1.2.16.jar:/srv/applications/Argila/services/PosManager/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/Argila/services/PosManager/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/Argila/services/PosManager/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=12796" (0x00000000)
+|   "-Dcommons.daemon.process.parent=12795" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/12796.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/12796.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
