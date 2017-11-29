@@ -1,0 +1,7 @@
+@date March 2, 2016
+@author <boniface.kegode@cellulant.com>
+
+Notes
+Changed Items
+- Removing the ping database function -- done
+- Adding try with resources where necessary

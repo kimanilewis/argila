@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * Profiling API functions configuration file.
+ * @author    Lewis Kimani <lewis.kimani@cellulant.com>
+ 
+ * Contains common configuration information that will be used accross all the
+ * API files/classes.
+ *
+ * @copyright 2013 Cellulant Ltd
+ * @version 3.0.0
+ * @since 2.2.0
+ */
+class Config
+{
+
+    /**
+     * Database host name or IP address.
+     *
+     * @var string
+     */
+    const HOST = "192.168.254.238";
+    /**
+     * Database user name.
+     *
+     * @var string
+     */
+    const USER = "cellulant";
+    /**
+     * Database password.
+     *
+     * @var string
+     */
+    const PASSWORD = "c3llul@nt";
+
+    /**
+     * Database name.
+     *
+     * @var string
+     */
+
+    const DATABASE = "hub_4_3_2";
+
+
+    /**
+     * Database port in use.
+     *
+     * @var string
+     */
+    const PORT = "3306";
+    /**
+     * File location for info logs.
+     *
+     * @var string
+     */
+    const INFO = "/var/log/applications/ke/hub4/hubChannels/profilingAPI/info.log";
+    /**
+     * File location for error logs.
+     *
+     * @var string
+     */
+    const ERROR = "/var/log/applications/ke/hub4/hubChannels/profilingAPI/error.log";
+    /**
+     * File location for fatal logs.
+     *
+     * @var string
+     */
+    const FATAL = "/var/log/applications/ke/hub4/hubChannels/profilingAPI/fatal.log";
+    /**
+     * File location for debug logs.
+     *
+     * @var string
+     */
+    const DEBUG = "/var/log/applications/ke/hub4/hubChannels/profilingAPI/debug.log";
+
+}

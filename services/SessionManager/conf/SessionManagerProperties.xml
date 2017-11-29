@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="InfoLogFile">/var/log/applications/Argila/SessionManager/Info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/Argila/SessionManager/Error.log</entry>
+    <!-- Application configs -->
+    <entry key="NumberOfThreads">1</entry>
+    <entry key="QueryLimit">1</entry>
+    <entry key="ConnectionTimeout">30000</entry>
+    <entry key="ReplyTimeout">90000</entry>
+    <entry key="SleepTime">1000</entry>
+    <entry key="ApplicationName">SessionManager</entry>
+    <entry key="MaximumFailedQueryRetries">5</entry>
+    <entry key="FAILED_QUERY_FILE">FAILED_QUERIES.TXT</entry>
+
+
+    <!-- Database connection configs -->
+    <entry key="DbPoolName">BillFetcher</entry>
+    <entry key="DbUserName">root</entry>
+    <entry key="DbPassword">lewie</entry>
+    <entry key="DbHost">localhost</entry>
+    <entry key="DbPort">3306</entry>
+    <entry key="DbName">argila</entry>
+    <entry key="DbMaxConnections">100</entry>
+    
+    <entry key="Processing">1</entry>
+    <entry key="UnProcessed">0</entry>
+    <entry key="Processed">2</entry>
+    <entry key="ProcessingFinished">3</entry>
+   
+
+    <!-- cost of time per minute in KES -->
+    <entry key="CostOfTimePerMinute">1</entry>
+    
+
+    <!-- Authentication Status codes returned from the API -->
+    <entry key="AuthenticationSuccess">131</entry>
+    <entry key="ConnectionRetrySleep">1000</entry>
+</properties>
