@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="InfoLogFile">/var/log/applications/Argila/PCUpdater/Info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/Argila/PCUpdater/Error.log</entry>
+    <!-- Application configs -->
+    <entry key="NumberOfThreads">1</entry>
+    <entry key="QueryLimit">1</entry>
+    <entry key="ConnectionTimeout">30000</entry>
+    <entry key="ReplyTimeout">90000</entry>
+    <entry key="SleepTime">1000</entry>
+    <entry key="ApplicationName">PCUpdater</entry>
+    <entry key="MaximumFailedQueryRetries">5</entry>
+    <entry key="FAILED_QUERY_FILE">FAILED_QUERIES.TXT</entry>
+
+
+    <!-- Database connection configs -->
+    <entry key="DbPoolName">PCUpdater</entry>
+    <entry key="DbUserName">root</entry>
+    <entry key="DbPassword">lewie</entry>
+    <entry key="DbHost">localhost</entry>
+    <entry key="DbPort">3306</entry>
+    <entry key="DbName">argila</entry>
+    <entry key="DbMaxConnections">100</entry>
+
+
+    <!-- cost of time per minute in KES -->
+    <entry key="CostOfTimePerMinute">10</entry>
+  
+    <!-- Secret Key and Intialization vector used to decode encrypted passwords -->
+    <entry key="IntializationVector">8228b9a98ca15318</entry>
+    <entry key="EncryptionKey">3c6e0b8a9c15224a</entry>
+
+    <!-- Authentication Status codes returned from the API -->
+    <entry key="AuthenticationSuccess">131</entry>
+  
+    <entry key="Processing">1</entry>
+    <entry key="UnProcessed">0</entry>
+    <entry key="Processed">2</entry>
+    <entry key="ProcessingFinished">3</entry>
+    
+    <entry key="ConnectionRetrySleep">1000</entry>
+</properties>

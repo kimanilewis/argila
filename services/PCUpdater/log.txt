@@ -1,0 +1,53 @@
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xF358B270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PCUpdater/PCUpdater.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=10427" (0x00000000)
+|   "-Dcommons.daemon.process.parent=10426" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Cannot find daemon loader org/apache/commons/daemon/support/DaemonLoader
+java_init failed
+Service exit with a return value of 1
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x6F664270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/Argila/services/PCUpdater/dist/PCUpdater.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=10490" (0x00000000)
+|   "-Dcommons.daemon.process.parent=10489" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/10490.jsvc_up

@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * Profiling API functions.
+ *
+ * Contains all the API functions.
+ *
+ * @category  Core
+ * @package   API
+ * @author    Lewis Kimani <lewis.kimani@cellulant.com>
+ * @copyright 2015 Cellulant Ltd
+ * @license   Proprietory License
+ * @link      http://www.cellulant.com
+ */
+
+require_once __DIR__ . 'Config.php';
+require_once __DIR__ . '/logger/BeepLogger.php';
+include_once __DIR__ . 'IXR_Library.php';
+
+
+	class ProfilingServer extends IXR_Server
+	{
+	    /**
+	     * Constructor.
+	     */
+	    public function __construct()
+	    {
+		$this->IXR_Server(
+		    array(
+		        "ProfilingAPI.createProfile" =>"ProfilingLibrary.createProfile",
+		        "ProfilingAPI.updateProfile" =>"ProfilingLibrary.updateProfile",
+		        "ProfilingAPI.deleteProfiles" => "ProfilingLibrary:deleteProfile",
+		        "ProfilingAPI.createImplicitAttributes" =>"ProfilingLibrary.createImplicitAttributes",
+		        "ProfilingAPI.updateImplicitAttributes" =>"ProfilingLibrary.updateImplicitAttributes",
+		        "ProfilingAPI.deleteImplicitAttributes" =>"ProfilingLibrary.deleteImplicitAttributes",
+		        "ProfilingAPI.createExplicitAttributes" =>"ProfilingLibrary.createExplicitAttributes",
+		        "ProfilingAPI.updateExplicitAttributes" =>"ProfilingLibrary.updateExplicitAttributes",
+		        "ProfilingAPI.deleteExplicitAttributes" =>"ProfilingLibrary.deleteExplicitAttributes",
+		        "ProfilingAPI.fetchProfiles" => "ProfilingLibrary.fetchProfile",
+		        "ProfilingAPI.createProfile" =>"ProfilingLibrary.createProfile",
+		        "ProfilingAPI.fetchProfiles" => "ProfilingLibrary:fetchProfile",
+		        "ProfilingAPI.fetchTransactionSummaries" => "ProfilingLibrary:fetchTransactionSummaries",
+		    )
+		    )
+		);
+	    }
+	}
+
+	new ProfilingServer();

@@ -1,0 +1,4 @@
+UPDATE sessionData set statusCode =  0 WHERE sessionDataID = 2
+UPDATE sessionData set statusCode =  0 WHERE sessionDataID = 3
+UPDATE sessionData set statusCode =  0 WHERE sessionDataID = 2
+UPDATE sessionData set statusCode =  0 WHERE sessionDataID = 1

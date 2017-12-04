@@ -1,0 +1,90 @@
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  GET /000033 HTTP/ 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  GET /000033 HTTP/ 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  GET /000033 HTTP/ 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  GET /000033 HTTP/ 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  78904 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, amount, customerProfileID,  FROM customerProfiles  WHERE accountNumber =  00119 
+SELECT accountNumber, cpa.availableTime, amount, cp.customerProfileID,  FROM customerProfiles cp  inner join customerProfileAccounts cpa  on cp.customerProfileID = cpa.customerProfileID WHERE accountNumber =  212135K 
+SELECT accountNumber, cpa.availableTime, amount, cp.customerProfileID,  FROM customerProfiles cp  inner join customerProfileAccounts cpa  on cp.customerProfileID = cpa.customerProfileID WHERE accountNumber =  212135K 
+UPDATE `customerProfileAccounts` SET availableTime = "null", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL null MINUTES) WHERE `customerProfileAccountID` = 0
+UPDATE `customerProfileAccounts` SET availableTime = "null", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL null MINUTES) WHERE `customerProfileAccountID` = 0
+UPDATE `customerProfileAccounts` SET availableTime = "null", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL null MINUTES) WHERE `customerProfileAccountID` = 0
+UPDATE `customerProfileAccounts` SET availableTime = "null", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL null MINUTES) WHERE `customerProfileAccountID` = 0
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 75 MINUTES) WHERE `customerProfileAccountID` = 1
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 75 MINUTES) WHERE `customerProfileAccountID` = 1
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 75 MINUTES) WHERE `customerProfileAccountID` = 1
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
+SELECT accountNumber, cpa.expiryTime,  cpa.customerProfileAccountID, cpa.availableTime, cpa.status, amountBalance, cp.customerProfileID  FROM customerProfiles cp  INNER JOIN customerProfileAccounts cpa  on cp.customerProfileID = cpa.customerProfileID WHERE accountNumber =  D55A1653 
+SELECT accountNumber, TIMESTAMPDIFF(SECOND,NOW(),cpa.expiryDate) as expiryTime,  cpa.customerProfileAccountID, cpa.expiryDate, cpa.processingStatus, amountBalance, cp.customerProfileID  FROM customerProfiles cp  INNER JOIN customerProfileAccounts cpa  on cp.customerProfileID = cpa.customerProfileID WHERE accountNumber =  D55A1653 
+UPDATE `customerProfileAccounts` SET expiryDate = "1", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 240 MINUTES) WHERE `customerProfileAccountID` = 3
+UPDATE `customerProfileAccounts` SET expiryDate = "1", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 240 MINUTES) WHERE `customerProfileAccountID` = 3
+UPDATE `customerProfileAccounts` SET expiryDate = "1", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 240 MINUTES) WHERE `customerProfileAccountID` = 3
+UPDATE `customerProfileAccounts` SET expiryDate = "1", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 240 MINUTES) WHERE `customerProfileAccountID` = 3
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240

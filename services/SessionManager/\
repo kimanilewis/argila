@@ -1,0 +1,275 @@
+--A new lookup table requestOrigins 
+CREATE TABLE `requestOrigins` (
+  `requestOriginID` int(5) unsigned NOT NULL AUTO_INCREMENT,
+  `requestOriginCode` varchar(50) DEFAULT NULL,
+  `requestOriginName` varchar(100) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `active` tinyint(3) NOT NULL,
+  `dateCreated` datetime DEFAULT NULL,
+  `insertedBy` int(11) DEFAULT NULL,
+  `dateModified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedBy` int(11) DEFAULT NULL,
+  PRIMARY KEY (`requestOriginID`)
+);
+--Lookup Data
+INSERT INTO requestOrigins(`requestOriginID`,`requestOriginCode`,`requestOriginName`,`description`,`dateCreated`,`insertedBy`,`updatedBy`) 
+VALUES (1,'MULA_APP','Mula App','Request originates from mula app',NOW(),1,1),
+(2,'MULA_WEB','Mula Web','Request originates from mula web',NOW(),1,1),
+(3,'CPG','CPG','Request originates from CPG',NOW(),1,1),
+(4,'WALLET','Wallet','Request originates from wallet',NOW(),1,1),
+(5,'OTHERS','Others','Request originates from other sources',NOW(),1,1);
+
+--ALTER s_requestLogID
+ALTER TABLE `s_requestLogs` ADD COLUMN 
+`requestOriginID` INT(11) UNSIGNED DEFAULT 5 AFTER `paymentMode`;
+
+ALTER TABLE `s_requestLogs`
+ADD CONSTRAINT `fk_s_requestOrigins_code`
+  FOREIGN KEY (`requestOriginID`)
+  REFERENCES `requestOrigins` (`requestOriginID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+-- A new table unknownMerchants
+CREATE TABLE `unknownMerchants` (
+  `unknownMerchantID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `profileID` int(11) NOT NULL,
+  `clientCategoryTypeID` int(11) unsigned NOT NULL,
+  `merchantName` varchar(100) DEFAULT NULL,
+  `bankName` varchar(100) DEFAULT NULL,
+  `bankBranch` varchar(100) DEFAULT NULL,
+  `accountNumber` varchar(100) DEFAULT NULL,
+  `paybillNumber` varchar(100) DEFAULT NULL,
+  `active` tinyint(3) unsigned NOT NULL DEFAULT '2',
+  `insertedBy` int(11) NOT NULL DEFAULT '0',
+  `dateCreated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updatedBy` int(11) NOT NULL DEFAULT '0',
+  `dateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`unknownMerchantID`),
+  KEY `fk_profiles_unknownmerchant` (`profileID`),
+  KEY `fk_clientCategoryType_unknownmerchant` (`clientCategoryTypeID`),
+  CONSTRAINT `fk_profile_unknownMerchants` FOREIGN KEY (`profileID`) REFERENCES `profiles` (`profileID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_clientCategory_unknownMerchants` FOREIGN KEY (`clientCategoryTypeID`) REFERENCES `clientCategoryTypes` (`clientCategoryTypeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+--drop the old table
+drop table transactionalSummaries;
+
+-- new transaction summaries table
+CREATE TABLE `transactionSummaries` (
+  `transactionSummaryID` INT NOT NULL AUTO_INCREMENT,
+  `profileID` INT NOT NULL,
+  `summary` TEXT NOT NULL,
+  `status` TINYINT(3) NOT NULL,
+  `dateCreated` DATETIME NOT NULL,
+  `dateModified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `insertedBy` INT NOT NULL,
+  `updatedBy` INT NOT NULL,
+  PRIMARY KEY (`transactionSummaryID`),
+  UNIQUE INDEX `profileID_UNIQUE` (`profileID` ASC),
+  CONSTRAINT `fk_transactionSummaries_1`
+    FOREIGN KEY (`profileID`)
+    REFERENCES `profiles` (`profileID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+--#profiles requestOrigin columns and foreign keys
+ALTER TABLE `clientProfiles` ADD `requestOriginID` INT( 11 ) UNSIGNED NULL DEFAULT NULL AFTER `clientProfileTypeID` ,
+ADD INDEX ( `requestOriginID` ) ;
+
+ ALTER TABLE `clientProfiles` ADD CONSTRAINT `requestOrigin_fk` FOREIGN KEY ( `requestOriginID` ) REFERENCES `requestOrigins` (
+`requestOriginID`
+) ON DELETE NO ACTION ON UPDATE NO ACTION ;
+
+ALTER TABLE `clientProfileAccounts` ADD `requestOriginID` INT( 11 ) UNSIGNED NULL DEFAULT NULL AFTER `partnerOtherLookupID` ;
+ALTER TABLE `clientProfileAccounts` ADD INDEX ( `requestOriginID` ) ;
+ALTER TABLE `clientProfileAccounts` ADD CONSTRAINT `requestOrigin_fk1` FOREIGN KEY ( `requestOriginID` ) REFERENCES `requestOrigins` (
+`requestOriginID`
+) ON DELETE NO ACTION ON UPDATE NO ACTION ;
+
+--Changes in attribute keys table.
+
+ALTER TABLE `attributeKeys` ADD `isVisible` TINYINT( 2 ) NOT NULL DEFAULT '1' AFTER `attributeKeyDesc` ;
+ALTER TABLE `attributeKeys` ADD `isEditable` TINYINT( 2 ) NOT NULL DEFAULT '1' AFTER `isVisible` ;
+
+--card attribute key
+insert into attributeKeys values(null,'cards','card attributes',0,0,1,1,now(),1,now());
+
+
+-- Create c_appResponses table
+CREATE TABLE `c_appResponses` (
+  `appResponseID` int(11) NOT NULL AUTO_INCREMENT,
+  `channelRequestID` int(11) NOT NULL DEFAULT '0',
+  `MSISDN` bigint(20) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `gatewayID` int(11) unsigned NOT NULL,
+  `gatewayUID` varchar(65) DEFAULT NULL,
+  `networkID` int(11) NOT NULL,
+  `connectorRuleID` int(11) unsigned NOT NULL,
+  `IMCID` int(11) unsigned DEFAULT NULL,
+  `clientSystemID` int(11) unsigned NOT NULL,
+  `externalSystemServiceID` int(11) DEFAULT NULL,
+  `connectorID` int(11) unsigned NOT NULL,
+  `priority` tinyint(2) unsigned DEFAULT '0',
+  `clientAPPID` varchar(50) NOT NULL,
+  `encrypted` tinyint(1) NOT NULL DEFAULT '0',
+  `overalStatus` int(11) NOT NULL DEFAULT '0',
+  `statusHistory` text COMMENT 'This column maintains the history status of the bulk. should contain the folowing {appID,status,date}',
+  `statusDescription` text,
+  `retry` tinyint(1) DEFAULT '0',
+  `processed` int(10) unsigned NOT NULL DEFAULT '0',
+  `bucketID` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `deliveryReportID` int(11) unsigned NOT NULL,
+  `deliveryDate` datetime NOT NULL,
+  `payload` text,
+  `appID` int(11) DEFAULT NULL,
+  `numberOfSends` int(10) unsigned NOT NULL DEFAULT '0',
+  `firstSend` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `nextsend` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastSend` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `expiryDate` datetime NOT NULL,
+  `dateCreated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`appResponseID`),
+  UNIQUE KEY `CLIENTSMSID_CLIENT` (`clientSystemID`,`clientAPPID`),
+  KEY `processed` (`processed`),
+  KEY `numberofsends` (`numberOfSends`),
+  KEY `nextSend` (`nextsend`),
+  KEY `bucketID` (`bucketID`),
+  KEY `connectorID` (`connectorID`),
+  KEY `connectorRuleID` (`connectorRuleID`),
+  KEY `deliveryReportID` (`deliveryReportID`),
+  KEY `gatewayID` (`gatewayID`),
+  KEY `overalStatus` (`overalStatus`),
+  KEY `date_created` (`dateCreated`),
+  CONSTRAINT `fk_c_appResponses_clientSystem` FOREIGN KEY (`clientSystemID`) REFERENCES `c_clientSystems` (`clientSystemID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_c_appResponses_gateway` FOREIGN KEY (`gatewayID`) REFERENCES `c_gateways` (`gatewayID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Add web templates tables.
+CREATE TABLE `s_webTemplates` (
+  `webTemplateID` int(11) NOT NULL AUTO_INCREMENT,
+  `templateName` varchar(50) NOT NULL,
+  `templateDescription` text,
+  `template` text NOT NULL,
+  `active` tinyint(2) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `insertedBy` int(11) NOT NULL,
+  `dateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedBy` int(11) NOT NULL,
+  PRIMARY KEY (`webTemplateID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `s_serviceWebTemplateMapping` (
+  `serviceWebTemplateMappingID` int(11) NOT NULL AUTO_INCREMENT,
+  `serviceID` int(10) unsigned NOT NULL,
+  `webTemplateID` int(11) NOT NULL,
+  `active` tinyint(2) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `insertedBy` int(11) NOT NULL,
+  `dateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedBy` int(11) NOT NULL,
+  PRIMARY KEY (`serviceWebTemplateMappingID`),
+  KEY `fk_serviceWebTemplateMapping_1_idx` (`serviceID`),
+  KEY `fk_s_serviceWebTemplateMapping_2_idx` (`webTemplateID`),
+  CONSTRAINT `fk_s_serviceWebTemplateMapping_2` FOREIGN KEY (`webTemplateID`) REFERENCES `s_webTemplates` (`webTemplateID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_serviceWebTemplateMapping_1` FOREIGN KEY (`serviceID`) REFERENCES `s_services` (`serviceID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `s_clientWebTemplateMapping` (
+  `clientWebTemplateMappingID` int(11) NOT NULL AUTO_INCREMENT,
+  `clientID` int(10) unsigned NOT NULL,
+  `webTemplateID` int(11) NOT NULL,
+  `active` tinyint(2) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `insertedBy` int(11) NOT NULL,
+  `dateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedBy` int(11) NOT NULL,
+  PRIMARY KEY (`clientWebTemplateMappingID`),
+  KEY `fk_s_clientWebTemplateMapping_2_idx` (`webTemplateID`),
+  KEY `fk_s_clientWebTemplateMapping_1_idx` (`clientID`),
+  CONSTRAINT `fk_s_clientWebTemplateMapping_1` FOREIGN KEY (`clientID`) REFERENCES `clients` (`clientID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_s_clientWebTemplateMapping_20` FOREIGN KEY (`webTemplateID`) REFERENCES `s_webTemplates` (`webTemplateID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Add email address to client profile table.
+ALTER TABLE `clientProfiles` ADD COLUMN `emailAddress` VARCHAR(200) NULL AFTER `gender`;
+-- Change installationID size
+ALTER TABLE `clientProfiles` CHANGE COLUMN `installationId` `installationId` VARCHAR(255) NULL DEFAULT NULL COMMENT 'For consumer app users' ;
+
+
+-- Add email ID and app response ID for tracking.
+ALTER TABLE `s_outMessages` 
+ADD COLUMN `appResponseID` INT(11) NULL AFTER `isAppNotification`,
+ADD COLUMN `emailQueueID` INT(11) NULL AFTER `appResponseID`,
+ADD INDEX `fk_s_outMessages_emailQueue_idx` (`emailQueueID` ASC),
+ADD INDEX `fk_s_outMessages_appResponses_idx` (`appResponseID` ASC);
+ALTER TABLE `s_outMessages` 
+ADD CONSTRAINT `fk_s_outMessages_emailQueue`
+  FOREIGN KEY (`emailQueueID`)
+  REFERENCES `emailQueue` (`emailQueueID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_s_outMessages_appResponses`
+  FOREIGN KEY (`appResponseID`)
+  REFERENCES `c_appResponses` (`appResponseID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+-- Update emailQueue table
+ALTER TABLE `emailQueue` 
+ADD COLUMN `type` ENUM('1', '2') NOT NULL DEFAULT '1' AFTER `status`;
+ 
+
+--profile synching column
+ALTER TABLE `clientProfiles` ADD `syncStatus` TINYINT( 2 ) NOT NULL DEFAULT '0' AFTER `requestOriginID` ;
+ALTER TABLE `clientProfileAccounts` ADD `syncStatus` TINYINT( 2 ) NOT NULL DEFAULT '0' AFTER `requestOriginID` ;
+ALTER TABLE `explicitAttributes` ADD `requestOriginID` INT( 11 ) NOT NULL AFTER `keyID` ;
+ALTER TABLE `explicitAttributes` ADD `syncStatus` TINYINT( 2 ) NOT NULL DEFAULT '0' AFTER `payload` ;
+ALTER TABLE `implicitAttributes` ADD `requestOriginID` INT( 11 ) NOT NULL DEFAULT '0' AFTER `keyID` ;
+ALTER TABLE `implicitAttributes` ADD `syncStatus` TINYINT( 2 ) NOT NULL DEFAULT '0' AFTER `payload` ;
+ALTER TABLE `explicitAttributes` ADD INDEX ( `requestOriginID` ) ;
+ALTER TABLE `explicitAttributes` CHANGE `requestOriginID` `requestOriginID` INT( 11 ) UNSIGNED NOT NULL ;
+ALTER TABLE `implicitAttributes` CHANGE `requestOriginID` `requestOriginID` INT( 11 ) UNSIGNED NOT NULL ;
+ALTER TABLE `implicitAttributes` ADD INDEX ( `requestOriginID` ) ;
+ALTER TABLE `profiles` ADD `requestOriginID` INT UNSIGNED NOT NULL AFTER `networkID` ,
+ADD INDEX ( `requestOriginID` ) ;
+ALTER TABLE `profiles` ADD `syncStatus` TINYINT( 2 ) NOT NULL DEFAULT '0' AFTER `requestOriginID` ;
+
+
+
+ALTER TABLE `clientProfiles` ADD CONSTRAINT `requestOrigin_fk2` FOREIGN KEY ( `requestOriginID` ) REFERENCES `hub_4_3_4`.`requestOrigins` (
+`requestOriginID`
+) ON DELETE NO ACTION ON UPDATE NO ACTION ;
+
+
+ALTER TABLE `explicitAttributes` ADD CONSTRAINT `requestOrigin_fk3` FOREIGN KEY ( `requestOriginID` ) REFERENCES `hub_4_3_4`.`requestOrigins` (
+`requestOriginID`
+) ON DELETE NO ACTION ON UPDATE NO ACTION ;
+
+ALTER TABLE `implicitAttributes` ADD CONSTRAINT `requestOrigin_fk4` FOREIGN KEY ( `requestOriginID` ) REFERENCES `hub_4_3_4`.`requestOrigins` (
+`requestOriginID`
+) ON DELETE NO ACTION ON UPDATE NO ACTION ;
+
+INSERT INTO modules values
+(185,'unknownMerchants',1,'unknownMerchants Model',1,1,NOW(),1,NOW()),
+(186,'sWebTemplates',1,'sWebTemplates Model',1,1,NOW(),1,NOW()),
+(187,'sServiceWebTemplateMapping',1,'sServiceWebTemplateMapping Model',1,1,NOW(),1,NOW()),
+(188,'sClientWebTemplateMapping',1,'sClientWebTemplateMapping Model',1,1,NOW(),1,NOW());
+
+ALTER TABLE `s_invoices` ADD COLUMN 
+`canRemind` tinyint(1) NOT NULL DEFAULT '1' AFTER `raisedByAPP`;
+
+ALTER TABLE `s_invoices` ADD COLUMN 
+`isRefreshed` tinyint(1) NOT NULL DEFAULT '1' AFTER `canRemind`;
+
+ALTER TABLE `s_outMessages` ADD COLUMN 
+`isReminder` tinyint(1) NOT NULL DEFAULT '0' AFTER `isAppNotification`;
+
+ALTER TABLE `clientProfileAccounts` ADD `billDueDate` DATETIME NULL AFTER `dateModified` ;
+ALTER TABLE `s_invoices` ADD `nextRefreshDate` DATETIME NULL DEFAULT NULL AFTER `dateModified` ;
+ALTER TABLE `clientProfileAccounts` ADD `billLastRefreshedDate` DATETIME NULL DEFAULT NULL AFTER `billDueDate` ;
+
+ALTER TABLE s_webTemplates MODIFY COLUMN template  mediumtext;
+
+ALTER TABLE `clientProfileAccounts` ADD `refreshStatusDescription` VARCHAR( 225 ) NULL DEFAULT NULL AFTER `billLastRefreshedDate` ;
