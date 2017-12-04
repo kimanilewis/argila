@@ -107,11 +107,12 @@ public final class FetchAccounts {
              */
             cpaQuery = "SELECT amountSpent, timeSpent, sd.amountBalance,"
                     + " sessionDataID, cpa.startTime,"
-                    + " cpa.expiryTime, cp.accountNumber, "
+                    + " cpa.expiryTime, l.locationName, cp.accountNumber, "
                     + " cpa.customerProfileAccountID"
                     + " FROM sessionData sd "
                     + " INNER JOIN customerProfileAccounts cpa "
                     + " ON cpa.customerProfileAccountID = sd.customerProfileAccountID "
+                    + " INNER JOIN locations l on cpa.locationID = l.locationID "
                     + " INNER JOIN customerProfiles cp "
                     + " ON cpa.customerProfileID = cp.customerProfileID "
                     + " WHERE sd.syncStatus IN (?,?);";
@@ -165,6 +166,7 @@ public final class FetchAccounts {
                     accounts.setCustomerProfileAccountID(rs.getInt("customerProfileAccountID"));
                     accounts.setAccountNumber(rs.getString("accountNumber"));
                     accounts.setTimeSpent(rs.getLong("timeSpent"));
+                    accounts.setLocationName(rs.getString("locationName"));
                     accounts.setAmountBalance(rs.getDouble("amountBalance"));
                     accounts.setAmountSpent(rs.getDouble("amountSpent"));
 
@@ -188,8 +190,7 @@ public final class FetchAccounts {
             }
             /**
              * else { logging.info(CoreUtils.getLogPreString() + "No records
-             * were fetched " + "from the DB for processing...");
-            }
+             * were fetched " + "from the DB for processing..."); }
              */
         } catch (SQLException e) {
             logging.error(CoreUtils.getLogPreString() + "Failed to "

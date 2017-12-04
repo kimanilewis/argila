@@ -17,7 +17,7 @@ public class AccountsData implements Serializable {
     private String accountNumber;
     private double accountBalance = 0;
     private Long MSISDN;
-    private String availableTime;
+    private String expiryDate;
     private int customerProfileID;
 
     public int getCustomerProfileID() {
@@ -60,12 +60,12 @@ public class AccountsData implements Serializable {
         this.MSISDN = MSISDN;
     }
 
-    public String getAvailableTime() {
-        return availableTime;
+    public String getExpiryDate() {
+        return expiryDate;
     }
 
-    public void setAvailableTime(String availableTime) {
-        this.availableTime = availableTime;
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
     }
 
     public String getDateCreated() {
@@ -84,7 +84,7 @@ public class AccountsData implements Serializable {
                 + ", accountBalance=" + accountBalance
                 + ", MSISDN=" + MSISDN
                 + ", dateCreated=" + dateCreated
-                + ", AvailableTime=" + availableTime
+                + ", AvailableTime=" + expiryDate
                 + '}';
     }
 

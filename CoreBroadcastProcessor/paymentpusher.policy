@@ -1,0 +1,6 @@
+// Sample policy file for the payment pusher Daemon
+
+grant {
+    permission java.security.AllPermission "${user.home}${/}-", "read,write,execute,delete";
+};
+

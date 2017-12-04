@@ -17,11 +17,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import org.json.JSONObject;
 
 /**
  *
@@ -87,7 +83,7 @@ public final class SessionManagerJob implements Runnable {
             String.valueOf(accounts.getAmountBalance()),
             String.valueOf(props.getFinishedProcessedStatus()),
             String.valueOf(props.getFinishedProcessedStatus()),
-            String.valueOf(accounts.getAvailableTime()),
+            String.valueOf(accounts.getExpiryDate()),
             String.valueOf(accounts.getCustomerProfileID())
         };
         if (accounts.getTimeSpent() == 0) {
@@ -100,7 +96,7 @@ public final class SessionManagerJob implements Runnable {
                 + " INNER JOIN customerProfileAccounts cpa "
                 + " ON cp.customerProfileID = cpa.customerProfileID "
                 + " SET cpa.amountBalance = ?, cp.statusCode = ? , "
-                + " cpa.processingStatus = ?, cpa.availableTime =?"
+                + " cpa.processingStatus = ?, cpa.expiryDate =?"
                 + " WHERE cp.customerProfileID = ? ";
 
         try (Connection conn = mysql.getConnection();
@@ -108,7 +104,7 @@ public final class SessionManagerJob implements Runnable {
             stmt.setDouble(1, accounts.getAmountBalance());
             stmt.setInt(2, props.getFinishedProcessedStatus());
             stmt.setInt(3, status);
-            stmt.setInt(4, accounts.getAvailableTime());
+            stmt.setString(4, accounts.getExpiryDate());
             stmt.setInt(5, accounts.getCustomerProfileID());
 
             logging.info(logPreString
@@ -256,14 +252,12 @@ public final class SessionManagerJob implements Runnable {
                 /*get time in minutes*/
                 long minutesSpent = TimeUnit.MILLISECONDS.toSeconds(timeDiff);
                 accounts.setTimeSpent(minutesSpent);
-                double amountSpent = minutesSpent * (props.getCostOfTimePerMinute() / 60);
-                long timeLeft = accounts.getAvailableTime() - minutesSpent;
-                accounts.setAvailableTime((int) timeLeft);
+//                double amountSpent = minutesSpent * (props.getCostOfTimePerMinute() / 60);
+                accounts.setExpiryDate((String) accounts.getExpiryDate());
 
-                accounts.setAmountSpent(amountSpent);
-                double balance = accounts.getAmountBalance() - amountSpent;
-                accounts.setAmountBalance(balance);
-
+//                accounts.setAmountSpent(amountSpent);
+//                double balance = accounts.getAmountBalance() - amountSpent;
+//                accounts.setAmountBalance(balance);
             } else if (accounts.getProfileStatus() == props.getProcessingStatus()) {
                 accounts.setTimeSpent(0);
                 accounts.setAmountSpent(0);

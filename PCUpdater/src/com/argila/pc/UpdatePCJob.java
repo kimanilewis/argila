@@ -15,14 +15,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import org.json.JSONObject;
 
 /**
  *
@@ -248,11 +240,11 @@ public final class UpdatePCJob implements Runnable {
         String[] params = {
             String.valueOf(accounts.getCustomerProfileID()),
             String.valueOf(accounts.getAccountBalance()),
-            accounts.getAvailableTime()
+            accounts.getExpiryDate()
         };
 
         String query = "INSERT INTO customerProfileAccounts(customerProfileID, "
-                + "amountBalance, availableTime)"
+                + "amountBalance, expiryDate)"
                 + " VALUES (?,?,?) ";
 
         try (Connection conn = mysql.getConnection();
@@ -260,7 +252,7 @@ public final class UpdatePCJob implements Runnable {
                         PreparedStatement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, accounts.getCustomerProfileID());
             stmt.setDouble(2, accounts.getAccountBalance());
-            stmt.setString(3, accounts.getAvailableTime());
+            stmt.setString(3, accounts.getExpiryDate());
             logging.info(logPreString
                     + "Updating Record with Accounts "
                     + accounts.getAccountNumber()
@@ -299,19 +291,19 @@ public final class UpdatePCJob implements Runnable {
     private void updateCustomerProfileAccount() {
         int customerProfileID = 0;
         String[] params = {
-            String.valueOf(accounts.getAvailableTime()),
+            String.valueOf(accounts.getExpiryDate()),
             String.valueOf(accounts.getAccountBalance()),
             String.valueOf(accounts.getCustomerProfileID()),};
 
         String query = "UPDATE customerProfileAccounts "
-                + "SET availableTime = ?, amountBalance = ? "
+                + "SET expiryDate = ?, amountBalance = ? "
                 + " WHERE customerProfileID = ? ";
 
         try (Connection conn = mysql.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query,
                         PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, accounts.getAvailableTime());
+            stmt.setString(1, accounts.getExpiryDate());
             stmt.setDouble(2, accounts.getAccountBalance());
             stmt.setInt(3, accounts.getCustomerProfileID());
             logging.info(logPreString

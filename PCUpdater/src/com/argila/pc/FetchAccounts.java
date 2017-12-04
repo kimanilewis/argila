@@ -106,7 +106,7 @@ public final class FetchAccounts {
              * Query to fetch active transacting records.
              */
             cpaQuery = "SELECT coreRequestID,accountNumber, accountBalance, "
-                    + " availableTime, MSISDN, dateCreated "
+                    + " expiryDate, MSISDN, dateCreated "
                     + " FROM coreRequests  "
                     + " WHERE status IN (?,?)";
 
@@ -154,7 +154,7 @@ public final class FetchAccounts {
                      */
 
                     accounts.setCoreRequestID(rs.getInt("coreRequestID"));
-                    accounts.setAvailableTime(rs.getString("availableTime"));
+                    accounts.setExpiryDate(rs.getString("expiryDate"));
                     accounts.setAccountNumber(rs.getString("accountNumber"));
                     accounts.setAccountBalance(rs.getInt("accountBalance"));
                     accounts.setMSISDN(rs.getLong("MSISDN"));

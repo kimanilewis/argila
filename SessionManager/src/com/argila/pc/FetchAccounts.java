@@ -107,7 +107,7 @@ public final class FetchAccounts {
              */
             cpaQuery = "SELECT cpa.customerProfileAccountID,"
                     + " cpa.processingStatus, cpa.customerProfileID, "
-                    + " availableTime, startTime, cpa.amountBalance,"
+                    + " expiryDate, startTime, cpa.amountBalance,"
                     + " expiryTime, accountNumber "
                     + " FROM customerProfileAccounts cpa "
                     + " INNER JOIN customerProfiles cp "
@@ -164,7 +164,7 @@ public final class FetchAccounts {
                      */
 
                     accounts.setCustomerProfileAccountID(rs.getInt("customerProfileAccountID"));
-                    accounts.setAvailableTime(rs.getInt("availableTime"));
+                    accounts.setExpiryDate(rs.getString("expiryDate"));
                     accounts.setCustomerProfileID(rs.getInt("customerProfileID"));
                     accounts.setExpiryTime(rs.getString("expiryTime"));
                     accounts.setProfileStatus(rs.getInt("processingStatus"));

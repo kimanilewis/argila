@@ -12,14 +12,10 @@ import com.argila.coreUpdater.utils.CoreUtils;
 import com.argila.coreUpdater.utils.Logging;
 import com.argila.coreUpdater.utils.Props;
 import com.argila.coreUpdater.utils.Constants;
-import com.cellulant.encryption.Encryption;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,26 +23,17 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import org.json.JSONObject;
@@ -389,7 +376,7 @@ public final class CoreUpdaterJob implements Runnable {
                 + "&amountSpent=" + accounts.getAmountSpent()
                 + "&timeSpent=" + accounts.getTimeSpent()
                 + "&timeStamp=" + timestampDateString
-                + "&location=" + "Westlands_Mall"
+                + "&location=" + accounts.getLocationName()
                 + "&action=" + action;
         url += payloadString;
         return url;
