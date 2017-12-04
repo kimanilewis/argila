@@ -382,7 +382,7 @@ public final class Props {
                 getLoadErrors().add(String.format(error2, "DbPassword"));
             }
             beepJsonAPI = props.getProperty("BeepJsonAPI");
-            if (getBeepJsonAPI().isEmpty()) {
+            if (getMpesaCheckoutAPI().isEmpty()) {
                 getLoadErrors().add(String.format(error2, "BeepJsonAPI"));
             }
 
@@ -491,7 +491,7 @@ public final class Props {
      *
      * @return the Beep API URL
      */
-    public String getBeepJsonAPI() {
+    public String getMpesaCheckoutAPI() {
         return beepJsonAPI;
     }
 

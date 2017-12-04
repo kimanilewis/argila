@@ -11,7 +11,7 @@
     <entry key="QueryLimit">1</entry>
     <entry key="ConnectionTimeout">30000</entry>
     <entry key="ReplyTimeout">90000</entry>
-    <entry key="SleepTime">10</entry>
+    <entry key="SleepTime">1000</entry>
     <entry key="ApplicationName">PosManager</entry>
     <entry key="MaximumFailedQueryRetries">5</entry>
     <entry key="FAILED_QUERY_FILE">FAILED_QUERIES.TXT</entry>
@@ -36,7 +36,7 @@
     <entry key="MinTime">120</entry>
    
     <!--<entry key="BeepJsonAPI">http://10.250.250.178:9001/hub/services/paymentGateway/XML/Validation.php</entry>-->
-    <entry key="BeepJsonAPI">http://localhost/BeepJsonAPI/Validation.php</entry>
+    <entry key="BeepJsonAPI">http://68.168.102.159/c2b/online</entry>
     <entry key="RaiseInvoiceAPI">http://localhost/BeepXmlAPI/</entry>
     <entry key="RaiseInvoiceFunction">BEEP.raiseInvoice</entry>
     <!-- Implicit Attribute Mula application Keys (Mula web, mula app and mula ussd) -->

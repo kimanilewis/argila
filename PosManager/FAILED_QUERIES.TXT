@@ -75,3 +75,16 @@ UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `e
 UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
 UPDATE `customerProfileAccounts` SET availableTime = "75", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 0 MINUTES) WHERE `customerProfileAccountID` = 75
 SELECT accountNumber, cpa.expiryTime,  cpa.customerProfileAccountID, cpa.availableTime, cpa.status, amountBalance, cp.customerProfileID  FROM customerProfiles cp  INNER JOIN customerProfileAccounts cpa  on cp.customerProfileID = cpa.customerProfileID WHERE accountNumber =  D55A1653 
+SELECT accountNumber, TIMESTAMPDIFF(SECOND,NOW(),cpa.expiryDate) as expiryTime,  cpa.customerProfileAccountID, cpa.expiryDate, cpa.processingStatus, amountBalance, cp.customerProfileID  FROM customerProfiles cp  INNER JOIN customerProfileAccounts cpa  on cp.customerProfileID = cpa.customerProfileID WHERE accountNumber =  D55A1653 
+UPDATE `customerProfileAccounts` SET expiryDate = "1", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 240 MINUTES) WHERE `customerProfileAccountID` = 3
+UPDATE `customerProfileAccounts` SET expiryDate = "1", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 240 MINUTES) WHERE `customerProfileAccountID` = 3
+UPDATE `customerProfileAccounts` SET expiryDate = "1", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 240 MINUTES) WHERE `customerProfileAccountID` = 3
+UPDATE `customerProfileAccounts` SET expiryDate = "1", startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 240 MINUTES) WHERE `customerProfileAccountID` = 3
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240
+UPDATE `customerProfileAccounts` startTime = NOW(), `expiryTime` = DATE_ADD( NOW(), INTERVAL 1 MINUTE) WHERE `customerProfileAccountID` = 240

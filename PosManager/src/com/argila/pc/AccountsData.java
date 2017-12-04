@@ -16,7 +16,25 @@ public class AccountsData implements Serializable {
     private int customerProfileAccountID = 0;
     private int customerProfileID;
     private String accountNumber;
-    private String availableTime;
+    private String expiryDate;
+    private int expiryTime;
+    private String locationID;
+
+    public String getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(String locationID) {
+        this.locationID = locationID;
+    }
+
+    public int getExpiryTime() {
+        return expiryTime;
+    }
+
+    public void setExpiryTime(int expiryTime) {
+        this.expiryTime = expiryTime;
+    }
     private double amount = 0;
 
     public int getCustomerProfileAccountID() {
@@ -43,12 +61,12 @@ public class AccountsData implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    public String getAvailableTime() {
-        return availableTime;
+    public String getExpiryDate() {
+        return expiryDate;
     }
 
-    public void setAvailableTime(String availableTime) {
-        this.availableTime = availableTime;
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
     }
 
     public double getAmount() {
@@ -61,7 +79,13 @@ public class AccountsData implements Serializable {
 
     @Override
     public String toString() {
-        return "AccountsData{" + "customerProfileAccountID=" + customerProfileAccountID + ", accountNumber=" + accountNumber + ", customerProfileID=" + customerProfileID + ", AvailableTime=" + availableTime + '}';
+        return "AccountsData{"
+                + "customerProfileAccountID=" + customerProfileAccountID
+                + ", customerProfileID=" + customerProfileID
+                + ", accountNumber=" + accountNumber
+                + ", expiryDate=" + expiryDate
+                + ", expiryTime=" + expiryTime + ", amount=" + amount
+                + '}';
     }
 
 }
