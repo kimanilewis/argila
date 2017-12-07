@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="InfoLogFile">/var/log/applications/ke/hub4/hubServices/CaviarRewardProcessor/CaviarRewardProcessorInfo.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/ke/hub4/hubServices/CaviarRewardProcessor/CaviarRewardProcessorError.log</entry>
+    <!-- Application configs -->
+    <entry key="NumberOfThreads">20</entry>
+    <entry key="ConnectionTimeout">3000</entry>
+    <entry key="ReplyTimeout">9000</entry>
+    <entry key="SleepTime">10000</entry>
+    <entry key="BucketSize">1</entry>
+    <entry key="ApplicationName">CaviarRewardsProcessor</entry>
+    <entry key="MaximumFailedQueryRetries">5</entry>
+
+
+    <!-- Database connection configs -->
+    <entry key="DbPoolName">PaymentPusherConPool</entry>
+    <entry key="DbUserName">cellulant</entry>
+    <entry key="DbPassword">c3llul@nt</entry>
+    <entry key="DbHost">192.168.254.238</entry>
+    <entry key="DbPort">3306</entry>
+    <entry key="DbName">cat_2_1</entry>
+    <entry key="DbMaxConnections">100</entry>
+
+    <!-- Service Ids for payment to be pushed -->
+    <!-- The service ID and name must be put in the appropriate section below
+    separated by commas -->
+    <!---<entry key="PaymentServiceIDs">1,2,3,4,5,6,7,8,9,10</entry>-->
+    <entry key="PaymentServiceIDs">191</entry>
+    <!-- Time before the next try of a record -->
+    <entry key="NextSendInterval">5</entry>
+    <!-- Maximum number of sends -->
+    <entry key="MaximumNumberOfSends">2</entry>
+    <!-- Timeout interval for payment processing in minutes -->
+    <entry key="PostPaymentPeriod">600</entry>
+    <!-- Timeout to fail a transaction that was on a retry status in seconds-->
+    <!-- (Should be shorter than PushAckTimeoutPeriod)-->
+    <entry key="FailPendingTrxTimeout">15</entry>
+    <!-- C2BPayment payload formulator and posting script -->
+    <entry key="PostPaymentAPIUrl">http://192.168.254.242/BeepJsonAPI/</entry>
+    <!--<entry key="WrapperScript">http://localhost/PaymentPusherWrappers/</entry>-->
+    <!-- The URL to the beep JSON API -->
+    <entry key="BeepJsonAPIUrl">http://localhost/BeepJsonAPI/index.php</entry>
+
+    <!--Beep Credentials-->
+    <!--<entry key="BeepUsername">beepC2BPusher</entry>-->
+    <entry key="BeepUsername">caviarApiUser</entry>
+    <entry key="BeepPassword">cc17b946d69dfb1c0931eee6383566c7</entry>
+
+    <!-- ***************************************************-->
+    <!-- *** The properties below are not bound to change **-->
+    <!-- *** Unless the API changes. Please dont touch if **-->
+    <!-- **** if you have no idea of what is they mean. ****-->
+    <!-- ***************************************************-->
+
+    <!-- Secret Key and Intialization vector used to decode encrypted passwords -->
+    <entry key="IntializationVector">8228b9a98ca15318</entry>
+    <entry key="EncryptionKey">3c6e0b8a9c15224a</entry>
+
+    <!-- Statuses that are to be picked for pushing -->
+    <entry key="NewPaymentStatus">139</entry>
+    <entry key="ReprocessPaymentStatus">401</entry>
+
+    <!-- Payment Push statuses -->
+    <entry key="ProcessedStatus">1</entry>
+    <entry key="UnprocessedStatus">0</entry>
+    <entry key="FailedStatus">3</entry>
+    <entry key="EscalatedStatus">103</entry>
+    <entry key="DefaultCurrencyCode">KES</entry>
+
+    <!-- Final statuses on overall status-->
+    <entry key="FinalAccepted">140</entry>
+    <entry key="FinalRejected">141</entry>
+    <entry key="FinalEscalated">219</entry>
+
+    <!-- Status codes returned from the API after acknowledgment -->
+    <entry key="AcknowledgmentOk">152</entry>
+    <entry key="TransactionAlreadyEscalated">239</entry>
+    <entry key="TransactionAlreadyAcknowledgedAccepted">240</entry>
+    <entry key="TransactionAlreadyAcknowledgedRejected">241</entry>
+
+    <!-- Authentication Status codes returned from the API -->
+    <entry key="AuthenticationSuccess">131</entry>
+
+    <!-- Beep API to Post payment ACK Configs -->
+    <entry key="BeepPostPaymentFunction">BEEP.postPayment</entry>
+
+    <!-- Same as the one on the C2B Wrapper config -->
+    <entry key="SuccessfullyDeliveredCode">188</entry>
+    <entry key="RetryFailureCode">189</entry>
+
+    <entry key="ConnectionRetrySleep">1000</entry>
+</properties>
