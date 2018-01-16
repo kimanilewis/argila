@@ -369,15 +369,22 @@ public final class CoreUpdaterJob implements Runnable {
 
         logging.info(logPreString
                 + "Message Type " + action);
+        /*temp fix
+         String url = props.getCoreAPI();
+         String payloadString = "?accountNumber="
+         + accounts.getAccountNumber() + "&amountBalance="
+         + accounts.getAmountBalance()
+         + "&amountSpent=" + accounts.getAmountSpent()
+         + "&timeSpent=" + accounts.getTimeSpent()
+         + "&timeStamp=" + timestampDateString
+         + "&location=" + accounts.getLocationName()
+         + "&action=" + action;
+         url += payloadString;
+         **/
         String url = props.getCoreAPI();
-        String payloadString = "?accountNumber="
-                + accounts.getAccountNumber() + "&amountBalance="
-                + accounts.getAmountBalance()
-                + "&amountSpent=" + accounts.getAmountSpent()
-                + "&timeSpent=" + accounts.getTimeSpent()
-                + "&timeStamp=" + timestampDateString
-                + "&location=" + accounts.getLocationName()
-                + "&action=" + action;
+        String message = "Dear customer, you have started a session at KFC-TheHub. At " + timestampDateString + ". Thank you for choosing Tap&Charge";
+        String payloadString = "https://api.africastalking.com/restless/send?username=argila&Apikey=3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c&to="
+                + accounts.getMsisdn() + "&message=" + message;
         url += payloadString;
         return url;
     }

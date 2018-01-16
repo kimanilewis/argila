@@ -20,7 +20,17 @@ public class AccountsData implements Serializable {
     private double amountSpent = 0;
     private double amountBalance = 0;
     private String locationName;
+    private String msisdn;
 
+    public String getMsisdn() {
+        return msisdn;
+    }
+
+    public void setMsisdn(String msisdn) {
+        this.msisdn = msisdn;
+    }
+
+    
     public String getLocationName() {
         return locationName;
     }

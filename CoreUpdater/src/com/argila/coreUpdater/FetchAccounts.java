@@ -107,7 +107,7 @@ public final class FetchAccounts {
              */
             cpaQuery = "SELECT amountSpent, timeSpent, sd.amountBalance,"
                     + " sessionDataID, cpa.startTime,"
-                    + " cpa.expiryTime, l.locationName, cp.accountNumber, "
+                    + " cpa.expiryTime, cp.MSISDN, l.locationName, cp.accountNumber, "
                     + " cpa.customerProfileAccountID"
                     + " FROM sessionData sd "
                     + " INNER JOIN customerProfileAccounts cpa "
@@ -167,6 +167,7 @@ public final class FetchAccounts {
                     accounts.setAccountNumber(rs.getString("accountNumber"));
                     accounts.setTimeSpent(rs.getLong("timeSpent"));
                     accounts.setLocationName(rs.getString("locationName"));
+                    accounts.setMsisdn(rs.getString("MSISDN"));
                     accounts.setAmountBalance(rs.getDouble("amountBalance"));
                     accounts.setAmountSpent(rs.getDouble("amountSpent"));
 
