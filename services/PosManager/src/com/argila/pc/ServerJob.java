@@ -301,7 +301,7 @@ public class ServerJob implements Runnable {
                 + " expiryTime = DATE_ADD( NOW(), INTERVAL ? MINUTE), locationID=? "
                 + " WHERE customerProfileAccountID = ? ";
         String[] params = {
-            String.valueOf(props.getProcessingStatus()),
+            String.valueOf(props.getUnProcessedStatus()),
             String.valueOf(accountsData.getExpiryTime()),
             String.valueOf(accountsData.getLocationID()),
             String.valueOf(accountsData.getCustomerProfileAccountID())
@@ -312,7 +312,7 @@ public class ServerJob implements Runnable {
 
             conn = mysql.getConnection();
             stmt = conn.prepareStatement(query);
-            stmt.setInt(1, props.getProcessingStatus());
+            stmt.setInt(1, props.getProcessedStatus());
             stmt.setInt(2, accountsData.getExpiryTime());
             stmt.setString(3, accountsData.getLocationID());
             stmt.setInt(4, accountsData.getCustomerProfileAccountID());
