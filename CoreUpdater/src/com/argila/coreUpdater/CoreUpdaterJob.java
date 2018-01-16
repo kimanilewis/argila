@@ -141,6 +141,11 @@ public final class CoreUpdaterJob implements Runnable {
                     + ", AmountBalance: " + accounts.getAmountBalance()
                     + ", Payload: ");
 
+            if (payload.isEmpty() || payload == null) {
+                logging.info(logPreString + "Action stop trigged."
+                        + " No message will be sent: Exiting ...");
+                return;
+            }
             httppost = new HttpPost(payload);
             httppost.setHeader("Authorization", props.getAuthorizationKey());
             httpParams = new BasicHttpParams();
@@ -330,6 +335,7 @@ public final class CoreUpdaterJob implements Runnable {
      */
     private String generatePayload(AccountsData accounts) throws ParseException {
         String payload = "";
+        String payloadString = null;
         Map<String, Object> packet = new HashMap<>();
 
         Map<String, Object> fullPayload = new HashMap<>();
@@ -363,6 +369,10 @@ public final class CoreUpdaterJob implements Runnable {
         String action;
         if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() < 0) {
             action = Constants.ACTION_START;
+            String url = props.getCoreAPI();
+            String message = "Dear customer, you have started a session at KFC-TheHub. At " + timestampDateString + ". Thank you for choosing Tap&Charge";
+            payloadString = "https://api.africastalking.com/restless/send?username=argila&Apikey=3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c&to="
+                    + accounts.getMsisdn() + "&message=" + message;
         } else {
             action = Constants.ACTION_STOP;
         }
@@ -381,10 +391,6 @@ public final class CoreUpdaterJob implements Runnable {
          + "&action=" + action;
          url += payloadString;
          **/
-        String url = props.getCoreAPI();
-        String message = "Dear customer, you have started a session at KFC-TheHub. At " + timestampDateString + ". Thank you for choosing Tap&Charge";
-        String payloadString = "https://api.africastalking.com/restless/send?username=argila&Apikey=3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c&to="
-                + accounts.getMsisdn() + "&message=" + message;
         return payloadString;
     }
 
