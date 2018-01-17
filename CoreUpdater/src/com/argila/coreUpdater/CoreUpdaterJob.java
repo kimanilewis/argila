@@ -8,6 +8,7 @@
 package com.argila.coreUpdater;
 
 import com.argila.coreUpdater.db.MySQL;
+import com.argila.coreUpdater.utils.AfricasTalkingGateway;
 import com.argila.coreUpdater.utils.CoreUtils;
 import com.argila.coreUpdater.utils.Logging;
 import com.argila.coreUpdater.utils.Props;
@@ -37,6 +38,7 @@ import org.apache.http.params.BasicHttpParams;
 import static org.apache.http.params.CoreProtocolPNames.USER_AGENT;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import org.json.JSONObject;
@@ -151,67 +153,34 @@ public final class CoreUpdaterJob implements Runnable {
                 return;
             }
 
-            URL obj = new URL(payload);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-            // optional default is GET
-            con.setRequestMethod("GET");
-
-            //add request header
-            con.setRequestProperty("User-Agent", USER_AGENT);
-
-            int responseCode = con.getResponseCode();
-            System.out.println("\nSending 'GET' request to URL : " + payload);
-            System.out.println("Response Code : " + responseCode);
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder responseBuffer = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                responseBuffer.append(inputLine);
-            }
-            in.close();
-            logging.info(logPreString + "Response from the API: "
-                    + responseBuffer.toString());
-            if (!responseBuffer.toString().isEmpty()) {
-                logging.info(logPreString
-                        + "The API invocation was successful. Message sent to: "
-                        + " " + accounts.getMsisdn());
+            String username = "argila";
+            String apiKey = "3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c";
+            String message = "";
+            if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() < 0) {
+                message = "Dear customer, you have started a session at KFC-TheHub. Thank you for choosing Tap&Charge";
+                // payloadString = "https://api.africastalking.com/restless/send?username=argila&Apikey=3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c&to="
+                //         + accounts.getMsisdn() + "&message=" + message;
             } else {
-                statusDescription = "No response received from the SMS API";
-
-                logging.error(logPreString
-                        + "The API invocation failed. No response received from the SMS API "
-                        + "response.");
+                logging.info(logPreString + "Action stop trigged."
+                        + " No message will be sent: Exiting ...");
+                return;
             }
-        } catch (ClientProtocolException ex) {
-            logging.error(logPreString
-                    + "An ClientProtocolException has been caught while "
-                    + "invoking the HUB API. Error Message: "
-                    + ex.getMessage());
+            // Create a new instance of our awesome gateway class
+            AfricasTalkingGateway gateway = new AfricasTalkingGateway(username, apiKey);
 
-            statusDescription = "Error setting the client protocol"
-                    + ex.getMessage();
+            logging.info(logPreString + "Response from the API: "
+                    + gateway.toString());
 
-        } catch (UnsupportedEncodingException ex) {
-            logging.error(logPreString
-                    + "An UnsupportedEncodingException has been caught "
-                    + "while invoking the CORE API. Error Message: "
-                    + ex.getMessage());
-
-            statusDescription = "Error Encoding the message to send"
-                    + ex.getMessage();
-
-        } catch (IOException ex) {
-            logging.error(logPreString
-                    + "An IOException has been caught while invoking the "
-                    + "CORE API. Error Message: " + ex.getMessage());
-
-            statusDescription = "IOException caught while processing"
-                    + ex.getMessage();
-
+            JSONArray results = gateway.sendMessage(accounts.getMsisdn(), message);
+            for (int i = 0; i < results.length(); ++i) {
+                JSONObject result = results.getJSONObject(i);
+                logging.info(logPreString + "Response from the API: "
+                        + result.toString());
+//                    System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
+//                    System.out.print(result.getString("number") + ",");
+//                    System.out.print(result.getString("messageId") + ",");
+//                    System.out.println(result.getString("cost"));
+            }
         } catch (ParseException ex) {
             logging.error(logPreString
                     + "A ParseException has been caught while decoding the "
@@ -220,8 +189,9 @@ public final class CoreUpdaterJob implements Runnable {
 
             statusDescription = "A ParseException has been caught. Response "
                     + "from CORE: " + ex.getMessage();
+        } catch (Exception e) {
+            logging.error(logPreString + "Response from the API: " + e.getMessage());
         }
-
         logging.info(logPreString
                 + "Record processed,"
                 + " Account Number : "
