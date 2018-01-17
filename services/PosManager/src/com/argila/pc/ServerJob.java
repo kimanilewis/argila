@@ -312,7 +312,7 @@ public class ServerJob implements Runnable {
 
             conn = mysql.getConnection();
             stmt = conn.prepareStatement(query);
-            stmt.setInt(1, props.getProcessedStatus());
+            stmt.setInt(1, props.getProcessingStatus());
             stmt.setInt(2, accountsData.getExpiryTime());
             stmt.setString(3, accountsData.getLocationID());
             stmt.setInt(4, accountsData.getCustomerProfileAccountID());
