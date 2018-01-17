@@ -12,10 +12,12 @@ import com.argila.coreUpdater.utils.CoreUtils;
 import com.argila.coreUpdater.utils.Logging;
 import com.argila.coreUpdater.utils.Props;
 import com.argila.coreUpdater.utils.Constants;
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,6 +34,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
+import static org.apache.http.params.CoreProtocolPNames.USER_AGENT;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.json.JSONException;
@@ -61,6 +64,7 @@ public final class CoreUpdaterJob implements Runnable {
      */
     private final AccountsData accounts;
     private final String logPreString;
+    private final String USER_AGENT = "Mozilla/5.0";
 
     /**
      * Class Constructor.
@@ -146,88 +150,40 @@ public final class CoreUpdaterJob implements Runnable {
                         + " No message will be sent: Exiting ...");
                 return;
             }
-            httppost = new HttpPost(payload);
-            httppost.setHeader("Authorization", props.getAuthorizationKey());
-            httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams,
-                    props.getConnectionTimeout());
-            HttpConnectionParams.setSoTimeout(httpParams,
-                    props.getReplyTimeout());
-            httpclient = new DefaultHttpClient(httpParams);
 
-            logging.info(logPreString + "Formulating post to API: "
-                    + "URL to invoke - " + props.getCoreAPI());
-            // Execute and get the response
-            response = httpclient.execute(httppost);
+            URL obj = new URL(payload);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-            if (response != null) {
+            // optional default is GET
+            con.setRequestMethod("GET");
 
-                BufferedReader rd = new BufferedReader(
-                        new InputStreamReader(
-                                response.getEntity().getContent()));
-                StringBuilder content = new StringBuilder(0);
-                String line;
-                while ((line = rd.readLine()) != null) {
-                    content.append(line);
-                }
-                jsonReply = content.toString();
+            //add request header
+            con.setRequestProperty("User-Agent", USER_AGENT);
 
-                logging.info(logPreString + "Response from the API: "
-                        + content.toString());
+            int responseCode = con.getResponseCode();
+            System.out.println("\nSending 'GET' request to URL : " + payload);
+            System.out.println("Response Code : " + responseCode);
 
-                if (!jsonReply.isEmpty()) {
-                    JSONObject jsonResp = new JSONObject(
-                            content.toString());
-                    if (jsonResp.has("msg")) {
-                        coreStatDescription = jsonResp.getString("msg");
-                    }
-                    if (jsonResp.has("status")) {
-                        coreStatCode = jsonResp.getInt("status");
-                    }
-                    if (jsonResp.has("message")) {
-                        messageResponse = jsonResp.getString("message");
-                    }
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder responseBuffer = new StringBuilder();
 
-                    /*
-                     * Check if the message was processed successfully
-                     * and it is the message that was sent.
-                     */
-                    if (coreStatCode == props.getAuthSuccessCode()) {
-
-                        logging.info(
-                                logPreString
-                                + "The API invocation was successful. Params returned:: "
-                                + ",  Status Code:" + coreStatCode
-                                + ",  Core Status Description Status : " + coreStatDescription
-                        );
-                        statusDescription = "Processed Successfully ";
-
-                        statusCode = props.getFinishedProcessingStatus();
-
-                    } else {
-
-                        statusDescription = "There was an error "
-                                + "processing this message on CORE "
-                                + "Status Description: " + messageResponse;
-
-                        logging.info(logPreString
-                                + "There was an error "
-                                + "processing this message on CORE. "
-                                + "Status Description: " + statusDescription);
-                        statusCode = props.getProcessingStatus();
-                    }
-                } else {
-                    logging.info(logPreString
-                            + "The API invocation returned a "
-                            + "response but was empty.");
-                    statusDescription = "Received an empty "
-                            + "response from the API";
-                }
+            while ((inputLine = in.readLine()) != null) {
+                responseBuffer.append(inputLine);
+            }
+            in.close();
+            logging.info(logPreString + "Response from the API: "
+                    + responseBuffer.toString());
+            if (!responseBuffer.toString().isEmpty()) {
+                logging.info(logPreString
+                        + "The API invocation was successful. Message sent to: "
+                        + " " + accounts.getMsisdn());
             } else {
-                statusDescription = "No response received from the CORE API";
+                statusDescription = "No response received from the SMS API";
 
                 logging.error(logPreString
-                        + "The API invocation failed. No response received from the CORE "
+                        + "The API invocation failed. No response received from the SMS API "
                         + "response.");
             }
         } catch (ClientProtocolException ex) {
@@ -255,15 +211,6 @@ public final class CoreUpdaterJob implements Runnable {
 
             statusDescription = "IOException caught while processing"
                     + ex.getMessage();
-
-        } catch (JSONException ex) {
-            logging.error(logPreString
-                    + "A JSONException has been caught while decoding the "
-                    + "reply." + jsonReply + " Error Message: "
-                    + ex.getMessage());
-
-            statusDescription = "A JSONException has been caught. Response "
-                    + "from CORE: " + ex.getMessage();
 
         } catch (ParseException ex) {
             logging.error(logPreString
