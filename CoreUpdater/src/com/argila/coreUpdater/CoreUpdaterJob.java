@@ -176,6 +176,11 @@ public final class CoreUpdaterJob implements Runnable {
                 JSONObject result = results.getJSONObject(i);
                 logging.info(logPreString + "Response from the API: "
                         + result.toString());
+                if ((result.getString("status").compareToIgnoreCase("success")) == 0) {
+                    logging.info(logPreString + "Response from the API was a succes.: "
+                            + result.toString());
+                    statusCode = 1;
+                }
 //                    System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
 //                    System.out.print(result.getString("number") + ",");
 //                    System.out.print(result.getString("messageId") + ",");
