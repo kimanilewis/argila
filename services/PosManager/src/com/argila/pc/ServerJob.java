@@ -301,7 +301,7 @@ public class ServerJob implements Runnable {
                 + " expiryTime = DATE_ADD( NOW(), INTERVAL ? MINUTE), locationID=? "
                 + " WHERE customerProfileAccountID = ? ";
         String[] params = {
-            String.valueOf(props.getUnProcessedStatus()),
+            String.valueOf(props.getProcessingStatus()),
             String.valueOf(accountsData.getExpiryTime()),
             String.valueOf(accountsData.getLocationID()),
             String.valueOf(accountsData.getCustomerProfileAccountID())
