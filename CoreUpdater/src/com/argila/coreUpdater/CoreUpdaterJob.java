@@ -157,7 +157,7 @@ public final class CoreUpdaterJob implements Runnable {
             String apiKey = "3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c";
             String message = "";
             if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() < 0) {
-                message = "Dear customer, you have started a session at KFC-TheHub. Thank you for choosing Tap&Charge";
+                message = "Dear customer, you have started a session at Big Sqaure-Karen. Thank you for choosing Tap&Charge. Deal of the week! 1/4Chicken+Chips for only 550/=";
                 // payloadString = "https://api.africastalking.com/restless/send?username=argila&Apikey=3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c&to="
                 //         + accounts.getMsisdn() + "&message=" + message;
             } else {
