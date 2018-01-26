@@ -8,14 +8,17 @@
 package com.argila.coreUpdater;
 
 import com.argila.coreUpdater.db.MySQL;
+import com.argila.coreUpdater.utils.AfricasTalkingGateway;
 import com.argila.coreUpdater.utils.CoreUtils;
 import com.argila.coreUpdater.utils.Logging;
 import com.argila.coreUpdater.utils.Props;
 import com.argila.coreUpdater.utils.Constants;
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,8 +35,10 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
+import static org.apache.http.params.CoreProtocolPNames.USER_AGENT;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import org.json.JSONObject;
@@ -61,6 +66,7 @@ public final class CoreUpdaterJob implements Runnable {
      */
     private final AccountsData accounts;
     private final String logPreString;
+    private final String USER_AGENT = "Mozilla/5.0";
 
     /**
      * Class Constructor.
@@ -141,125 +147,45 @@ public final class CoreUpdaterJob implements Runnable {
                     + ", AmountBalance: " + accounts.getAmountBalance()
                     + ", Payload: ");
 
-            httppost = new HttpPost(payload);
-            httppost.setHeader("Authorization", props.getAuthorizationKey());
-            httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams,
-                    props.getConnectionTimeout());
-            HttpConnectionParams.setSoTimeout(httpParams,
-                    props.getReplyTimeout());
-            httpclient = new DefaultHttpClient(httpParams);
-
-            logging.info(logPreString + "Formulating post to API: "
-                    + "URL to invoke - " + props.getCoreAPI());
-            // Execute and get the response
-            response = httpclient.execute(httppost);
-
-            if (response != null) {
-
-                BufferedReader rd = new BufferedReader(
-                        new InputStreamReader(
-                                response.getEntity().getContent()));
-                StringBuilder content = new StringBuilder(0);
-                String line;
-                while ((line = rd.readLine()) != null) {
-                    content.append(line);
-                }
-                jsonReply = content.toString();
-
-                logging.info(logPreString + "Response from the API: "
-                        + content.toString());
-
-                if (!jsonReply.isEmpty()) {
-                    JSONObject jsonResp = new JSONObject(
-                            content.toString());
-                    if (jsonResp.has("msg")) {
-                        coreStatDescription = jsonResp.getString("msg");
-                    }
-                    if (jsonResp.has("status")) {
-                        coreStatCode = jsonResp.getInt("status");
-                    }
-                    if (jsonResp.has("message")) {
-                        messageResponse = jsonResp.getString("message");
-                    }
-
-                    /*
-                     * Check if the message was processed successfully
-                     * and it is the message that was sent.
-                     */
-                    if (coreStatCode == props.getAuthSuccessCode()) {
-
-                        logging.info(
-                                logPreString
-                                + "The API invocation was successful. Params returned:: "
-                                + ",  Status Code:" + coreStatCode
-                                + ",  Core Status Description Status : " + coreStatDescription
-                        );
-                        statusDescription = "Processed Successfully ";
-
-                        statusCode = props.getFinishedProcessingStatus();
-
-                    } else {
-
-                        statusDescription = "There was an error "
-                                + "processing this message on CORE "
-                                + "Status Description: " + messageResponse;
-
-                        logging.info(logPreString
-                                + "There was an error "
-                                + "processing this message on CORE. "
-                                + "Status Description: " + statusDescription);
-                        statusCode = props.getProcessingStatus();
-                    }
-                } else {
-                    logging.info(logPreString
-                            + "The API invocation returned a "
-                            + "response but was empty.");
-                    statusDescription = "Received an empty "
-                            + "response from the API";
-                }
-            } else {
-                statusDescription = "No response received from the CORE API";
-
-                logging.error(logPreString
-                        + "The API invocation failed. No response received from the CORE "
-                        + "response.");
+            if (payload.isEmpty() || payload == null) {
+                logging.info(logPreString + "Action stop trigged."
+                        + " No message will be sent: Exiting ...");
+                return;
             }
-        } catch (ClientProtocolException ex) {
-            logging.error(logPreString
-                    + "An ClientProtocolException has been caught while "
-                    + "invoking the HUB API. Error Message: "
-                    + ex.getMessage());
 
-            statusDescription = "Error setting the client protocol"
-                    + ex.getMessage();
+            String username = "argila";
+            String apiKey = "3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c";
+            String message = "";
+            if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() < 0) {
+                message = "Dear customer, you have started a session at Big Sqaure-Karen. Thank you for choosing Tap&Charge. Deal of the week! 1/4Chicken+Chips for only 550/=";
+                // payloadString = "https://api.africastalking.com/restless/send?username=argila&Apikey=3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c&to="
+                //         + accounts.getMsisdn() + "&message=" + message;
+            } else {
+                logging.info(logPreString + "Action stop trigged."
+                        + " No message will be sent: Exiting ...");
+                return;
+            }
+            // Create a new instance of our awesome gateway class
+            AfricasTalkingGateway gateway = new AfricasTalkingGateway(username, apiKey);
 
-        } catch (UnsupportedEncodingException ex) {
-            logging.error(logPreString
-                    + "An UnsupportedEncodingException has been caught "
-                    + "while invoking the CORE API. Error Message: "
-                    + ex.getMessage());
+            logging.info(logPreString + "Response from the API: "
+                    + gateway.toString());
 
-            statusDescription = "Error Encoding the message to send"
-                    + ex.getMessage();
-
-        } catch (IOException ex) {
-            logging.error(logPreString
-                    + "An IOException has been caught while invoking the "
-                    + "CORE API. Error Message: " + ex.getMessage());
-
-            statusDescription = "IOException caught while processing"
-                    + ex.getMessage();
-
-        } catch (JSONException ex) {
-            logging.error(logPreString
-                    + "A JSONException has been caught while decoding the "
-                    + "reply." + jsonReply + " Error Message: "
-                    + ex.getMessage());
-
-            statusDescription = "A JSONException has been caught. Response "
-                    + "from CORE: " + ex.getMessage();
-
+            JSONArray results = gateway.sendMessage(accounts.getMsisdn(), message);
+            for (int i = 0; i < results.length(); ++i) {
+                JSONObject result = results.getJSONObject(i);
+                logging.info(logPreString + "Response from the API: "
+                        + result.toString());
+                if ((result.getString("status").compareToIgnoreCase("success")) == 0) {
+                    logging.info(logPreString + "Response from the API was a succes.: "
+                            + result.toString());
+                    statusCode = 1;
+                }
+//                    System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
+//                    System.out.print(result.getString("number") + ",");
+//                    System.out.print(result.getString("messageId") + ",");
+//                    System.out.println(result.getString("cost"));
+            }
         } catch (ParseException ex) {
             logging.error(logPreString
                     + "A ParseException has been caught while decoding the "
@@ -268,8 +194,9 @@ public final class CoreUpdaterJob implements Runnable {
 
             statusDescription = "A ParseException has been caught. Response "
                     + "from CORE: " + ex.getMessage();
+        } catch (Exception e) {
+            logging.error(logPreString + "Response from the API: " + e.getMessage());
         }
-
         logging.info(logPreString
                 + "Record processed,"
                 + " Account Number : "
@@ -330,6 +257,7 @@ public final class CoreUpdaterJob implements Runnable {
      */
     private String generatePayload(AccountsData accounts) throws ParseException {
         String payload = "";
+        String payloadString = null;
         Map<String, Object> packet = new HashMap<>();
 
         Map<String, Object> fullPayload = new HashMap<>();
@@ -363,23 +291,29 @@ public final class CoreUpdaterJob implements Runnable {
         String action;
         if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() < 0) {
             action = Constants.ACTION_START;
+            String url = props.getCoreAPI();
+            String message = "Dear customer, you have started a session at KFC-TheHub. At " + timestampDateString + ". Thank you for choosing Tap&Charge";
+            payloadString = "https://api.africastalking.com/restless/send?username=argila&Apikey=3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c&to="
+                    + accounts.getMsisdn() + "&message=" + message;
         } else {
             action = Constants.ACTION_STOP;
         }
 
         logging.info(logPreString
                 + "Message Type " + action);
-        String url = props.getCoreAPI();
-        String payloadString = "?accountNumber="
-                + accounts.getAccountNumber() + "&amountBalance="
-                + accounts.getAmountBalance()
-                + "&amountSpent=" + accounts.getAmountSpent()
-                + "&timeSpent=" + accounts.getTimeSpent()
-                + "&timeStamp=" + timestampDateString
-                + "&location=" + accounts.getLocationName()
-                + "&action=" + action;
-        url += payloadString;
-        return url;
+        /*temp fix
+         String url = props.getCoreAPI();
+         String payloadString = "?accountNumber="
+         + accounts.getAccountNumber() + "&amountBalance="
+         + accounts.getAmountBalance()
+         + "&amountSpent=" + accounts.getAmountSpent()
+         + "&timeSpent=" + accounts.getTimeSpent()
+         + "&timeStamp=" + timestampDateString
+         + "&location=" + accounts.getLocationName()
+         + "&action=" + action;
+         url += payloadString;
+         **/
+        return payloadString;
     }
 
     /**

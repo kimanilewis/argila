@@ -83,7 +83,7 @@ public class ServerJob implements Runnable {
             String messageString = "";
             String accountNumber;
             String batteryLevel;
-//            String outPutString;
+            String outPutString;
             String locationID;
 //            try (InputStream input = clientSocket.getInputStream();
 //                    OutputStream output = clientSocket.getOutputStream()) {
@@ -99,59 +99,58 @@ public class ServerJob implements Runnable {
                 String[] incomingMessage = messageString.split("\\|");
                 logging.info(CoreUtils.getLogPreString() + "init() |"
                         + " Request was processed: AccountNumber received is.." + Arrays.toString(incomingMessage));
-//                accountNumber = incomingMessage[0]; //account number;
-//                batteryLevel = incomingMessage[1];
-//                locationID = incomingMessage[2];
-//                accountsData.setLocationID(locationID);
-//                logging.info(CoreUtils.getLogPreString() + "init() |"
-//                        + " Request was processed: AccountNumber received is.." + accountNumber);
-//                logging.info(CoreUtils.getLogPreString() + "init() |"
-//                        + " Request was processed: Battery level received is.." + batteryLevel);
-//                logging.info(CoreUtils.getLogPreString() + "init() |"
-//                        + " Request was processed: Location ID received is.." + locationID);
-//                int responseTime = checkAccountValidity(accountNumber);
-//                int response = responseTime / 60;
-//                int maxTime = props.getMaxTime() / 60;
-//                int minTime = props.getMinTime() / 60;
-//                logging.info(CoreUtils.getLogPreString() + "init() |"
-//                        + " Response is.." + response
-//                        + " maxTime is.." + maxTime
-//                        + " minTime is.." + minTime
-//                );
-//                //initiateCheckout();
-//                if (responseTime == -1) {
-//                    triggerStopSession();
-//                    outPutString = "SC9999Z";
-//                } else if (response > maxTime && maxTime < 10) {
-//
-//                    accountsData.setExpiryTime(props.getMaxTime());
-//                    updateProcessingState();
-//                    outPutString = "SC000" + String.valueOf(maxTime + "Z");
-//                    updateProcessingState();
-//
-//                } else if (response >= maxTime && maxTime > 9) {
-//                    accountsData.setExpiryTime(props.getMaxTime());
-//                    updateProcessingState();
-//                    outPutString = "SC00" + String.valueOf(maxTime + "Z");
-//                    updateProcessingState();
-//
-//                } else if (response < maxTime
-//                        && response >= minTime && response > 9) {
-//                    accountsData.setExpiryTime(response * 60);
-//                    updateProcessingState();
-//
-//                    outPutString = "SC00" + String.valueOf(response + "Z");
-//                } else if (response < maxTime
-//                        && response >= minTime && response < 9) {
-//                    accountsData.setExpiryTime(response * 60);
-//                    updateProcessingState();
-//
-//                    outPutString = "SC000" + String.valueOf(response + "Z");
-//                } else {
-//                    outPutString = "SC0000Z";
-//
-//                }
-                String outPutString = "SC1234Z";
+                accountNumber = incomingMessage[0]; //account number;
+                batteryLevel = incomingMessage[1];
+                locationID = incomingMessage[2];
+                accountsData.setLocationID(locationID);
+                logging.info(CoreUtils.getLogPreString() + "init() |"
+                        + " Request was processed: AccountNumber received is.." + accountNumber);
+                logging.info(CoreUtils.getLogPreString() + "init() |"
+                        + " Request was processed: Battery level received is.." + batteryLevel);
+                logging.info(CoreUtils.getLogPreString() + "init() |"
+                        + " Request was processed: Location ID received is.." + locationID);
+                int responseTime = checkAccountValidity(accountNumber);
+                int response = responseTime / 60;
+                int maxTime = props.getMaxTime() / 60;
+                int minTime = props.getMinTime() / 60;
+                logging.info(CoreUtils.getLogPreString() + "init() |"
+                        + " Response is.." + response
+                        + " maxTime is.." + maxTime
+                        + " minTime is.." + minTime
+                );
+                //initiateCheckout();
+                if (responseTime == -1) {
+                    triggerStopSession();
+                    outPutString = "SC9999Z";
+                } else if (response > maxTime && maxTime < 10) {
+
+                    accountsData.setExpiryTime(props.getMaxTime());
+                    updateProcessingState();
+                    outPutString = "SC000" + String.valueOf(maxTime + "Z");
+                    updateProcessingState();
+
+                } else if (response >= maxTime && maxTime > 9) {
+                    accountsData.setExpiryTime(props.getMaxTime());
+                    updateProcessingState();
+                    outPutString = "SC00" + String.valueOf(maxTime + "Z");
+                    updateProcessingState();
+
+                } else if (response < maxTime
+                        && response >= minTime && response > 9) {
+                    accountsData.setExpiryTime(response * 60);
+                    updateProcessingState();
+
+                    outPutString = "SC00" + String.valueOf(response + "Z");
+                } else if (response < maxTime
+                        && response >= minTime && response < 9) {
+                    accountsData.setExpiryTime(response * 60);
+                    updateProcessingState();
+
+                    outPutString = "SC000" + String.valueOf(response + "Z");
+                } else {
+                    outPutString = "SC0000Z";
+
+                }
                 try (
                         Writer w = new OutputStreamWriter(output, "UTF-8")) {
                     w.write(outPutString);
