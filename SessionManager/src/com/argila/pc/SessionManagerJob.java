@@ -79,19 +79,19 @@ public final class SessionManagerJob implements Runnable {
 
     private void updateTransaction() {
         int status;
-        String[] params = {
-            String.valueOf(accounts.getAmountBalance()),
-            String.valueOf(props.getFinishedProcessedStatus()),
-            String.valueOf(props.getFinishedProcessedStatus()),
-            String.valueOf(accounts.getExpiryDate()),
-            String.valueOf(accounts.getCustomerProfileID())
-        };
+
         if (accounts.getTimeSpent() == 0) {
             status = props.getProcessedStatus();
         } else {
             status = props.getFinishedProcessedStatus();
         }
-
+        String[] params = {
+            String.valueOf(accounts.getAmountBalance()),
+            String.valueOf(props.getFinishedProcessedStatus()),
+            String.valueOf(status),
+            String.valueOf(accounts.getExpiryDate()),
+            String.valueOf(accounts.getCustomerProfileID())
+        };
         String query = "UPDATE customerProfiles cp "
                 + " INNER JOIN customerProfileAccounts cpa "
                 + " ON cp.customerProfileID = cpa.customerProfileID "
