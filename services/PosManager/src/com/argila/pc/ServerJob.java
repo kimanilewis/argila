@@ -22,12 +22,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import org.apache.commons.httpclient.HttpClient;
 //import org.apache.commons.httpclient.params.HttpParams;
 import org.apache.http.HttpResponse;
@@ -110,43 +115,21 @@ public class ServerJob implements Runnable {
                 logging.info(CoreUtils.getLogPreString() + "init() |"
                         + " Request was processed: Location ID received is.." + locationID);
                 int responseTime = checkAccountValidity(accountNumber);
-                int response = responseTime / 60;
-                int maxTime = props.getMaxTime() / 60;
-                int minTime = props.getMinTime() / 60;
+                int response = 1;
                 logging.info(CoreUtils.getLogPreString() + "init() |"
-                        + " Response is.." + response
-                        + " maxTime is.." + maxTime
-                        + " minTime is.." + minTime
+                        + " Response Status.." + responseTime
                 );
                 //initiateCheckout();
                 if (responseTime == -1) {
                     triggerStopSession();
                     outPutString = "SC9999Z";
-                } else if (response > maxTime && maxTime < 10) {
+                } else if (responseTime > 0) {
 
                     accountsData.setExpiryTime(props.getMaxTime());
                     updateProcessingState();
-                    outPutString = "SC000" + String.valueOf(maxTime + "Z");
+                    outPutString = "SC00" + String.valueOf(props.getMaxTime() + "Z");
                     updateProcessingState();
 
-                } else if (response >= maxTime && maxTime > 9) {
-                    accountsData.setExpiryTime(props.getMaxTime());
-                    updateProcessingState();
-                    outPutString = "SC00" + String.valueOf(maxTime + "Z");
-                    updateProcessingState();
-
-                } else if (response < maxTime
-                        && response >= minTime && response > 9) {
-                    accountsData.setExpiryTime(response * 60);
-                    updateProcessingState();
-
-                    outPutString = "SC00" + String.valueOf(response + "Z");
-                } else if (response < maxTime
-                        && response >= minTime && response < 9) {
-                    accountsData.setExpiryTime(response * 60);
-                    updateProcessingState();
-
-                    outPutString = "SC000" + String.valueOf(response + "Z");
                 } else {
                     outPutString = "SC0000Z";
 
@@ -234,11 +217,18 @@ public class ServerJob implements Runnable {
                     accountsData.setAmount(rs.getDouble("amountBalance"));
                     accountsData.setExpiryDate(rs.getString("expiryDate"));
                     status = rs.getInt("processingStatus");
-                    int expiryTime = rs.getInt("expiryTime");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    String expiryDate = accountsData.getExpiryDate().trim().replaceAll("[^0-9|:|\\-|\\s]", "");
+                    expiryDate = expiryDate.trim().replaceAll("^:", "");
+                    expiryDate = expiryDate.trim();
+                    Date expiryDueDate = sdf.parse(expiryDate);
+                    Calendar cal = Calendar.getInstance();
+                    cal.add(Calendar.DATE, 0);
+                    Date CurrentDateTime = cal.getTime();
 
-                    if (expiryTime > 0 && status != props.getProcessingStatus()) {
-                        time = expiryTime;
-                    } else if (expiryTime > 0 && status == props.getProcessingStatus()) {
+                    if (expiryDueDate.after(CurrentDateTime) && status != props.getProcessingStatus()) {
+                        time = 1;
+                    } else if (expiryDueDate.after(CurrentDateTime) && status == props.getProcessingStatus()) {
                         time = 0;
                         time = -1;
 
@@ -271,6 +261,8 @@ public class ServerJob implements Runnable {
             CoreUtils.updateFile(logging,
                     Constants.FAILED_QUERIES_FILE,
                     trueStoreQuery);
+        } catch (ParseException ex) {
+            Logger.getLogger(ServerJob.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             isCurrentPoolShutDown = true;
         }
