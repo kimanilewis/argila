@@ -116,8 +116,12 @@ public class ServerJob implements Runnable {
                         + " Request was processed: Location ID received is.." + locationID);
                 int responseTime = checkAccountValidity(accountNumber);
                 int response = 1;
+                int maxTime = props.getMaxTime() / 60;
+                int minTime = props.getMinTime() / 60;
                 logging.info(CoreUtils.getLogPreString() + "init() |"
-                        + " Response Status.." + responseTime
+                        + " Response is.." + response
+                        + " maxTime is.." + maxTime
+                        + " minTime is.." + minTime
                 );
                 //initiateCheckout();
                 if (responseTime == -1) {
@@ -126,8 +130,7 @@ public class ServerJob implements Runnable {
                 } else if (responseTime > 0) {
 
                     accountsData.setExpiryTime(props.getMaxTime());
-                    updateProcessingState();
-                    outPutString = "SC00" + String.valueOf(props.getMaxTime() + "Z");
+                    outPutString = "SC000" + String.valueOf(maxTime + "Z");
                     updateProcessingState();
 
                 } else {
@@ -218,17 +221,21 @@ public class ServerJob implements Runnable {
                     accountsData.setExpiryDate(rs.getString("expiryDate"));
                     status = rs.getInt("processingStatus");
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    String expiryDate = accountsData.getExpiryDate().trim().replaceAll("[^0-9|:|\\-|\\s]", "");
-                    expiryDate = expiryDate.trim().replaceAll("^:", "");
-                    expiryDate = expiryDate.trim();
+                    String expiryDate = accountsData.getExpiryDate();
                     Date expiryDueDate = sdf.parse(expiryDate);
                     Calendar cal = Calendar.getInstance();
                     cal.add(Calendar.DATE, 0);
                     Date CurrentDateTime = cal.getTime();
 
+                    logging.info(CoreUtils.getLogPreString()
+                            + "Date of expiry " + expiryDueDate);
                     if (expiryDueDate.after(CurrentDateTime) && status != props.getProcessingStatus()) {
+                        logging.info(CoreUtils.getLogPreString()
+                                + " Account Inactive, About to start session.  " + expiryDueDate + "status: " + status);
                         time = 1;
                     } else if (expiryDueDate.after(CurrentDateTime) && status == props.getProcessingStatus()) {
+                        logging.info(CoreUtils.getLogPreString()
+                                + "Account was active, about to stop session. " + expiryDueDate + "status: " + status);
                         time = 0;
                         time = -1;
 
