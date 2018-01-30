@@ -112,8 +112,8 @@ public final class FetchAccounts {
                     + " FROM customerProfileAccounts cpa "
                     + " INNER JOIN customerProfiles cp "
                     + " ON cpa.customerProfileID = cp.customerProfileID  "
-                    + " WHERE cpa.processingStatus IN (?) or"
-                    + " cpa.expiryTime <= NOW() AND cpa.processingStatus = ? ";
+                    + " WHERE cpa.processingStatus IN (?,?) or"
+                    + " cpa.expiryTime <= NOW() ";
 
             stmt = conn.prepareStatement(cpaQuery);
             stmt.setInt(1, props.getProcessingStatus());
