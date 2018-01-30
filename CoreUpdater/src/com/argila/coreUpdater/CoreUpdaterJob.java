@@ -113,7 +113,7 @@ public final class CoreUpdaterJob implements Runnable {
         /**
          * The status code to update the record.
          */
-        int statusCode = 0;
+        int statusCode = 3;
         /**
          * Status Description to update for the record.
          */
@@ -163,6 +163,7 @@ public final class CoreUpdaterJob implements Runnable {
             } else {
                 logging.info(logPreString + "Action stop trigged."
                         + " No message will be sent: Exiting ...");
+                updateTransaction(statusCode, statusDescription);
                 return;
             }
             // Create a new instance of our awesome gateway class
