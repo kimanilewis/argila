@@ -86,26 +86,22 @@ public final class SessionManagerJob implements Runnable {
             status = props.getFinishedProcessedStatus();
         }
         String[] params = {
-            String.valueOf(accounts.getAmountBalance()),
             String.valueOf(props.getFinishedProcessedStatus()),
             String.valueOf(status),
-            String.valueOf(accounts.getExpiryDate()),
             String.valueOf(accounts.getCustomerProfileID())
         };
         String query = "UPDATE customerProfiles cp "
                 + " INNER JOIN customerProfileAccounts cpa "
                 + " ON cp.customerProfileID = cpa.customerProfileID "
-                + " SET cpa.amountBalance = ?, cp.statusCode = ? , "
-                + " cpa.processingStatus = ?, cpa.expiryDate =?"
+                + " SET  cp.statusCode = ? , "
+                + " cpa.processingStatus = ?"
                 + " WHERE cp.customerProfileID = ? ";
 
         try (Connection conn = mysql.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setDouble(1, accounts.getAmountBalance());
-            stmt.setInt(2, props.getFinishedProcessedStatus());
-            stmt.setInt(3, status);
-            stmt.setString(4, accounts.getExpiryDate());
-            stmt.setInt(5, accounts.getCustomerProfileID());
+            stmt.setInt(1, props.getFinishedProcessedStatus());
+            stmt.setInt(2, status);
+            stmt.setInt(3, accounts.getCustomerProfileID());
 
             logging.info(logPreString
                     + "Updating Record with Accounts "
@@ -238,13 +234,13 @@ public final class SessionManagerJob implements Runnable {
             Date sessionStartTime = sdf.parse("0000-00-00 00:00:00");
             if (accounts.getStartTime() != null
                     && !accounts.getStartTime().isEmpty()
-                    && !accounts.getStartTime().startsWith("0000")) {
+                    && !accounts.getStartTime().startsWith("000")) {
                 sessionStartTime = sdf.parse(accounts.getStartTime());
             }
             Date sessionExpiryTime = sdf.parse("0000-00-00 00:00:00");
             if (accounts.getExpiryTime() != null
                     && !accounts.getExpiryTime().isEmpty()
-                    && !accounts.getExpiryTime().startsWith("0000")) {
+                    && !accounts.getExpiryTime().startsWith("000")) {
                 sessionExpiryTime = sdf.parse(accounts.getExpiryTime());
             }
             if (accounts.getProfileStatus() == props.getProcessedStatus()) {
