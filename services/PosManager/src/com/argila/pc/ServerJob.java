@@ -297,7 +297,7 @@ public class ServerJob implements Runnable {
         query = "UPDATE customerProfileAccounts "
                 + " SET "
                 + " startTime = NOW(), processingStatus = ?,"
-                + " expiryTime = DATE_ADD( NOW(), INTERVAL ? MINUTE), locationID=? "
+                + " expiryTime = DATE_ADD( NOW(), INTERVAL ? MINUTE), locationID= ? "
                 + " WHERE customerProfileAccountID = ? ";
         String[] params = {
             String.valueOf(props.getProcessingStatus()),
