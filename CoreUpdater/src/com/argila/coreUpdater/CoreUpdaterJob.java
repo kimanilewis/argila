@@ -269,7 +269,7 @@ public final class CoreUpdaterJob implements Runnable {
 
         packet.put("accountNumber",
                 accounts.getAccountNumber());
-        if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() < 0) {
+        if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() > 0) {
             packet.put("action", Constants.ACTION_START);
         } else {
             packet.put("action", Constants.ACTION_STOP);
