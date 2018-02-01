@@ -113,7 +113,7 @@ public final class CoreUpdaterJob implements Runnable {
         /**
          * The status code to update the record.
          */
-        int statusCode = 3;
+        int statusCode = 0;
         /**
          * Status Description to update for the record.
          */
@@ -296,6 +296,7 @@ public final class CoreUpdaterJob implements Runnable {
             String message = "Dear customer, you have started a session at KFC-TheHub. At " + timestampDateString + ". Thank you for choosing Tap&Charge";
             payloadString = "https://api.africastalking.com/restless/send?username=argila&Apikey=3c8d27d51601c87bdb90756a17dabe2e2da59a72728ba5cd5aa81832888d090c&to="
                     + accounts.getMsisdn() + "&message=" + message;
+            return payloadString;
         } else {
             action = Constants.ACTION_STOP;
         }
