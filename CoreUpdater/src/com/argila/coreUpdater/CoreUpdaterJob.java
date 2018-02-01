@@ -180,7 +180,7 @@ public final class CoreUpdaterJob implements Runnable {
                 if ((result.getString("status").compareToIgnoreCase("success")) == 0) {
                     logging.info(logPreString + "Response from the API was a succes.: "
                             + result.toString());
-                    statusCode = 3;
+                    statusCode = 0;
                 }
 //                    System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
 //                    System.out.print(result.getString("number") + ",");
@@ -269,7 +269,7 @@ public final class CoreUpdaterJob implements Runnable {
 
         packet.put("accountNumber",
                 accounts.getAccountNumber());
-        if (props.getProcessingStatus() == 1) {
+        if (accounts.getTimeSpent() > 0) {
             packet.put("action", Constants.ACTION_START);
         } else {
             packet.put("action", Constants.ACTION_STOP);
