@@ -180,7 +180,7 @@ public final class CoreUpdaterJob implements Runnable {
                 if ((result.getString("status").compareToIgnoreCase("success")) == 0) {
                     logging.info(logPreString + "Response from the API was a succes.: "
                             + result.toString());
-                    statusCode =props.getFinishedProcessingStatus();
+                    statusCode = props.getFinishedProcessingStatus();
                 }
 //                    System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
 //                    System.out.print(result.getString("number") + ",");
@@ -290,7 +290,7 @@ public final class CoreUpdaterJob implements Runnable {
         String timestampDateString = sDFormat.format(calendar.getTime());
 
         String action;
-        if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() < 0) {
+        if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() > 0) {
             action = Constants.ACTION_START;
             String url = props.getCoreAPI();
             String message = "Dear customer, you have started a session at KFC-TheHub. At " + timestampDateString + ". Thank you for choosing Tap&Charge";
