@@ -290,7 +290,7 @@ public final class CoreUpdaterJob implements Runnable {
         String timestampDateString = sDFormat.format(calendar.getTime());
 
         String action;
-        if (accounts.getTimeSpent() == 0 || accounts.getTimeSpent() > 0) {
+        if (accounts.getTimeSpent() > 0) {
             action = Constants.ACTION_START;
             String url = props.getCoreAPI();
             String message = "Dear customer, you have started a session at KFC-TheHub. At " + timestampDateString + ". Thank you for choosing Tap&Charge";
