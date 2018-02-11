@@ -1,0 +1,6 @@
+{
+    "require": {
+        "respect/validation": "^1.1",
+        "fabpot/goutte": "^3.1"
+    }
+}

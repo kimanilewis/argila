@@ -1,0 +1,25 @@
+{
+    "name": "Argila Core",
+    "description": "Argila Core API for performing basic function, mpesa, pos",
+    "authors": [
+        {
+            "name": "Lewis Kimani",
+            "email": "kimanilewi@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "opis/database": "^3.6",
+        "symfony/config": "^3.1",
+        "symfony/yaml": "^3.1",
+        "respect/validation": "<=0.9.8",
+        "devster/ubench": "^1.2",
+        "apache/log4php": "^2.0",
+        "klein/klein": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Argila\\ArgilaCoreAPI\\": "application/"
+        }
+    }
+}
