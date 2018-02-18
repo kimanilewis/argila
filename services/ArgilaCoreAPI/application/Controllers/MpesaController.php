@@ -7,6 +7,7 @@ use Argila\ArgilaCoreAPI\Models\Mpesa as Request;
 use Argila\ArgilaCoreAPI\Models\customerProfiles as customerProfile;
 use Argila\ArgilaCoreAPI\Models\customerAccounts as customerAccounts;
 use Argila\ArgilaCoreAPI\Models\paymentRequests as payment;
+use Argila\ArgilaCoreAPI\Models\sms_requests as sms;
 use Argila\ArgilaCoreAPI\Utilities\SyncLogger as logger;
 use Argila\ArgilaCoreAPI\Config\Config;
 use Argila\ArgilaCoreAPI\Config\Validation;
@@ -33,7 +34,8 @@ class MpesaController
     private $benchmark;
     private $coreUtils;
     private $helpers;
-    private $balance;
+    private $balance = 0.0;
+    private $newBCF = 0.0;
 
     function __construct() {
         $this->log = new logger();
@@ -52,7 +54,6 @@ class MpesaController
         $this->log->info(Config::info, -1,
             "Proceeding to validate  "
             . " mpesa request ");
-//        $customerProfile = new customerProfile();
         $validator = new Validation();
         /**
          * *********************************************************************
@@ -64,6 +65,9 @@ class MpesaController
             "Received mpesa data...."
             . $this->log->printArray($request));
         $statusDescription = "invalid parameters: ";
+        $cardDetails = array();
+        $sms_template = "";
+//         $accountProfileDetails = 
         try {
 
             if ($this->helpers->validateParams($requestData, $rules)) {
@@ -83,12 +87,25 @@ class MpesaController
                  * check for mandatory clientCode
                  */
                 $accountNumber = $requestData['BillRefNumber'];
+                $msisdn = $requestData['MSISDN'];
+                $kycinfo = json_decode($requestData['KYCInfo'], true);
+                $firstName = $kycinfo[0]['KYCValue'];
+                $lastName = $kycinfo[1]['KYCValue'];
+                $customerName = $firstName . " " . $lastName;
+                $this->log->info(Config::info, $accountNumber,
+                    "account profile does not exist:"
+                    . "  About to check if its a valid card "
+                    . $this->log->printArray($customerName));
+                $request['customerName'] = $customerName;
                 $accountProfileDetails = $this->coreUtils->checkAccountProfile($accountNumber);
                 if (count($accountProfileDetails) > 0) {
                     $this->log->info(Config::info, $accountNumber,
                         "account profile exists: About to update account "
                         . $this->log->printArray($accountProfileDetails));
-                    $this->updateAccountDetails($request, $accountProfileDetails);
+                    $updateResponse = $this->updateAccountDetails($request,
+                        $accountProfileDetails);
+                    $accountProfileDetails['balanceCarriedForward'] = $this->newBCF;
+                    $sms_template = $updateResponse;
 
                 } else {
                     $this->log->info(Config::info, $accountNumber,
@@ -101,65 +118,23 @@ class MpesaController
                         $this->log->info(Config::info, $accountNumber,
                             " card details exists:  "
                             . $this->log->printArray($cardDetails));
-                        $card_id = $cardDetails['card_id'];
                         //create customer account
                         $this->saveCustomerAccount($request, $cardDetails);
+                        $accountProfileDetails = $this->coreUtils->checkAccountProfile($accountNumber);
+                        $message = $this->coreUtils->formatMessage(Config::START_SESSION,
+                            $accountData);
+                        $sms_template = Config::NEW_ACCOUNT;
                         } else {
                         $this->log->info(Config::info, $accountNumber,
                             "account profile does not exist:"
                             . "  exiting... "
                             . $this->log->printArray($cardDetails));
+                        $this->coreUtils->logSMS("invalid account", $msisdn,
+                            Config::UNKNOWN_ACCOUNT, 1);
                         return $response;
+
                         }
                 }
-                return $response;
-                /*
-                 * **************************************************************
-                 * validate mandatory parameter service code
-                 */
-                $serviceCode = $requestData['serviceCode'];
-
-                $validateCurrencyCode = $this->coreUtils->getService($serviceCode);
-                if (count($validateCurrencyCode) > 0) {
-                    $this->log->debug(Config::debug, $clientCode,
-                        "Service Code exists: Proceeding to create one"
-                        . " service details are: "
-                        . $this->log->printArray($$accountProfileDetails));
-                    $getRandon = $this->coreUtils->randomCode(6);
-                    $serviceCode = substr($serviceCode, 0, 3) . $getRandon;
-                    $this->log->debug(Config::debug, $serviceCode,
-                        "Service Code updated to: " . $serviceCode);
-                    $service->serviceCode = $serviceCode;
-                    $result['serviceCode'] = $serviceCode;
-                } else {
-                    $this->log->info(Config::info, $serviceCode,
-                        "service does not exist. Preceeding to create one: ");
-                    $service->serviceCode = $serviceCode;
-                }
-                /*
-                 * **************************************************************
-                 * validate mandatory parameter currency code
-                 */
-                $currencyCode = $requestData['currencyCode'];
-
-                $validateCurrencyCode = $this->coreUtils->getCurrency($currencyCode);
-                if (count($validateCurrencyCode) > 0) {
-                    $this->log->info(Config::info, $currencyCode,
-                        "currencyCode validated successfully: "
-                        . " currency details are: "
-                        . $this->log->printArray($validateCurrencyCode));
-                    $currencyID = $validateCurrencyCode['currencyID'];
-                    $service->currencyID = $currencyID;
-                } else {
-                    $result['statusCode'] = StatusCodes::INVALID_CURRENCY_CODE;
-                    $statusDescription .= "CurrencyCode($currencyCode),";
-                    $result['statusDescription'] = $statusDescription;
-                    array_push($results, $result);
-                }
-
-                $service->active = StatusCodes::ACTIVE;
-                $service->dateCreated = date(Config::DATE_TIME_FORMAT);
-
             }
             /**
              * *****************************************************************
@@ -205,9 +180,6 @@ class MpesaController
             $this->log->info(Config::info, 0,
                 "Client data validation failed. Following errors were found:"
                 . $this->log->printArray($results));
-            $result['statusCode'] = StatusCodes::FAILED_VALIDATION;
-            $result['statusDescription'] = "Request validation failed";
-            $result['clientCode'] = $clientCode;
             array_push($results, $result);
 
             $response['accept'] = Config::FAILED_MPESA_REQUEST;
@@ -215,9 +187,15 @@ class MpesaController
         } else {
             try {
                 $this->log->info(Config::info, 0,
-                    "About to save the service request to the database ");
-                $service->save();
-                $result['hubServiceID'] = $service->serviceID;
+                    "About to save sms request to the database ");
+                $accountProfileDetails['customerName'] == NULL ||
+                    empty($accountProfileDetails['customerName']) ? $accountProfileDetails['customerName']
+                        = "Customer" : $accountProfileDetails['customerName'];
+                $accountProfileDetails['balance'] = $this->balance;
+                $message = $this->coreUtils->formatMessage($sms_template,
+                    $accountProfileDetails);
+                $this->coreUtils->logSMS("account top up", $msisdn, $message, 1);
+
                 $this->log->info(Config::info, 0,
                     "Service created successfully. Result:"
                     . $this->log->printArray($results));
@@ -252,7 +230,7 @@ class MpesaController
 
         $customerProfile = new customerProfile();
         $customerProfile->MSISDN = $request['MSISDN'];
-//        $customerProfile->customerName =$request['MSISDN'];
+        $customerProfile->customerName = $request['customerName'];
         $customerProfile->dateCreated = date(Config::DATE_TIME_FORMAT);
         $customerProfile->save();
 
@@ -260,7 +238,8 @@ class MpesaController
         $units = $billDetails['units'];
         $balance = $billDetails['balance'];
         $expiryDate = date(Config::DATE_TIME_FORMAT,
-            strtotime(date(Config::DATE_TIME_FORMAT) . ' + ' . $units . ' months'));
+            strtotime(date(Config::DATE_TIME_FORMAT) . ' + '
+                . $units . ' months'));
 
         $profileID = $customerProfile->customerProfileID;
         $customerAccount = new customerAccounts();
@@ -284,6 +263,7 @@ class MpesaController
             "Proceeding to initiate  "
             . "Update account details "
             . $this->log->printArray($request));
+        $sms_template = Config::TOP_UP;
         try {
             //add amount to balance.
             $amount = $request['TransAmount'];
@@ -292,31 +272,33 @@ class MpesaController
                 $amountCarriedForward);
             $units = $billDetails['units'];
             $balance = $billDetails['balance'];
+            if ($units < 1){
+                $sms_template = Config::UNDER_PAYMENT;
+            } else {
+                $sms_template = Config::TOP_UP;
+                }
             $customerProfileAccountID = $accountDetails['customerProfileAccountID'];
 
             $expiryDate = $accountDetails['expiryDate'];
-            $params['expiryDate'] = "DATE_ADD($expiryDate, INTERVAL $units " . ' ' . "  MONTH)";
+            $params['expiryDate'] = "DATE_ADD($expiryDate,"
+                . " INTERVAL $units " . ' ' . "  MONTH)";
             $params['balanceCarriedForward'] = $balance;
 
             $cutomerProfiles = customerAccounts::find($customerProfileAccountID);
             $newdDate = date(Config::DATE_TIME_FORMAT,
-                strtotime($cutomerProfiles->expiryDate . ' + ' . $units . ' months'));
+                strtotime($cutomerProfiles->expiryDate . ''
+                    . ' + ' . $units . ' months'));
 
             $cutomerProfiles->expiryDate = $newdDate;
             $cutomerProfiles->balanceCarriedForward = $balance;
-            $cutomerProfiles->save();
-//            $cutomerProfile->save();
-//            $updateResult = $this->coreUtils->updateQuery($customerProfileAccountID,
-//                'customerProfileAccountID', 'customer_accounts', $params);
             if ($cutomerProfiles->save()){
-                //Service  updated successfully .
+                //cutomerProfiles  updated successfully .
                 $this->log->info(Config::info, -1,
                     "customer account record updated successfully: ");
                 $result['statusCode'] = StatusCodes::PROCESSED_REQUEST;
                 $statusDescription .= "Record updated successfully";
                 $result['statusDescription'] = $statusDescription;
                 $result['accountNumber'] = $accountDetails['accountNumber'];
-                return $result;
             } else {
                 $this->log->info(Config::info, -1,
                     "Failed to update customer account "
@@ -337,7 +319,7 @@ class MpesaController
             array_push($results, $result);
         }
         $this->benchmark->end();
-        return $result;
+        return $sms_template;
     }
 
     private function calculateSubscription($amountPaid, $balance) {
@@ -353,9 +335,21 @@ class MpesaController
 
         $units = (int) floor($totalAmount / Config::COST_PER_UNIT);
         $newBalance = $totalAmount - ($units * Config::COST_PER_UNIT);
-        $this->balance = $newBalance;
-        $response['balance'] = $newBalance;
-        $response['units'] = $units;
+        $this->balance = Config::COST_PER_UNIT - $totalAmount;
+        $this->newBCF = $totalAmount;
+        $this->log->info(Config::info, -1,
+            "Calculating subscription. "
+            . "Amount paid: $amountPaid, available balance: $balance");
+        if ($units < 1){
+            //under subscription
+            $response['balance'] = $newBalance;
+            $response['units'] = $units;
+        } else{
+            $response['balance'] = $newBalance;
+            $response['units'] = $units;
+        }
+
+
         $this->benchmark->end();
 
         return $response;

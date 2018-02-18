@@ -1,16 +1,13 @@
 <?php
 
 $apiUrl = "http://localhost/argilaCore/index.php/mpesa_request";
-//$apiUrl = "http://192.168.254.242:9008/syncAPI_KE/index.php/api";
-
-$username = "ecommerce";
-$password = "!23qweASD";
+//$apiUrl = "http://localhost/argilaCore/index.php/pos";
+$password = "2018-04-11 20:55:22";
 
 
-$posRequest = '{"credentials":{"Token":"bigsquare998874","location_id":"ABCD1234"},"payload":{"accountNumber":"D1337B25","batteryLevel":"1030","source":"pos"}}';
+$posRequest = '{"credentials":{"Token":"bigsquare998874","location_id":"1234ABCB"},'
+    . '"payload":{"accountNumber":"394687UJ","batteryLevel":"1030","source":"pos"}}';
 $userRequest = array(
-//    'username' => $username,
-//    'password' => $password,
     'source' => 'pos',
     'batteryLevel' => '10',
     'accountNumber' => '123WE',
@@ -18,14 +15,14 @@ $userRequest = array(
 
 $mpesaRequest = array(
     'xmlns:ns1' => 'http://cps.huawei.com/cpsinterface/c2bpayment',
-    'TransAmount' => '200.00',
+    'TransAmount' => '10.00',
     'TransID' => 'LH36RF88BD',
     'TransType' => 'Pay Bill',
-    'BillRefNumber' => '12_ABC',
+    'BillRefNumber' => '12345AAA',
     'BusinessShortCode' => 765035,
     'TransTime' => '20170803144147',
-    'MSISDN'=>'254718668308',
-    'KYCInfo' =>'[{ '
+    'MSISDN' => '254718583299',
+    'KYCInfo' => '[{ '
     . '    "KYCValue": "John",  '
     . '    "KYCName": "[Personal Details][First Name]"    },    '
     . ' {      "KYCValue": "Doe",      '
@@ -37,8 +34,6 @@ $mpesaRequest = array(
     . '    }  ]',
 );
 
-//$response = post($apiUrl,$paymentRequest);
-//$response = post($apiUrl, $paymentRequestArray);
 $response = post($apiUrl, $mpesaRequest);
 
 print_r($response);
@@ -54,6 +49,7 @@ function post($url = "", $fields = array()) {
     curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
     curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');
     curl_setopt($ch, CURLOPT_POST, count($fields));
+//    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
     curl_setopt($ch, CURLOPT_POSTFIELDS, (json_encode($fields)));
     $result = curl_exec($ch);
     curl_close($ch);

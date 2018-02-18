@@ -8,6 +8,7 @@ namespace Argila\ArgilaCoreAPI\Controllers;
 
 use Argila\ArgilaCoreAPI\Config\StatusCodes;
 use Argila\ArgilaCoreAPI\Models\User as Request;
+use Argila\ArgilaCoreAPI\Models\customerAccounts as customerAccounts;
 use Argila\ArgilaCoreAPI\Utilities\SyncLogger as logger;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Ubench as benchmark;
@@ -60,15 +61,116 @@ class PosController
          * *********************************************************************
          * Check if session exists
          */
-        return Config::MAX_TIME;
-        $accountData = $this->coreUtils->checkActiveSession($request['accountNumber']);
-        if (new DateTime() < new DateTime($accountData['expiryDate']) && $accountData['processingStatus']
-            != Config::ACTIVE){
+//        return Config::MAX_TIME;
+        $accountData = $this->coreUtils->checkAccountProfile($request['payload']['accountNumber']);
+        if (empty($accountData)){
+            return Config::FAILED_RESPONSE;
+        }
+
+        $msisdn = $accountData['MSISDN'];
+        $diff = strtotime($accountData['expiryDate']) -
+            strtotime(date(Config::DATE_TIME_FORMAT));
+        $de = $accountData['expiryDate'];
+        $this->log->debug(Config::debug, -1,
+            "Proceeding to initiate expiry date: $de "
+            . "date diff:  $diff");
+        $locationDetails = $this->coreUtils->getLocation($request['credentials']['location_id']);
+        $accountData['locationName'] = $locationDetails['locationName'];
+        $locationID = $locationDetails['locationID'];
+        $accountData['customerName'] == NULL || empty($accountData['customerName']) ? $accountData['customerName']
+                = "Customer" : $accountData['customerName'];
+        $accountData['message'] = $locationDetails['advert'];
+        $message = $this->coreUtils->formatMessage(Config::START_SESSION,
+            $accountData);
+        if ($diff > 0 && $accountData['processingStatus'] != Config::ACTIVE){
             // expiry date is in future ..start a session.
+//            die($message . " ". strlen($message));
+            $this->startSession($accountData['customerProfileAccountID'],
+                $locationID);
+            $this->coreUtils->logSMS("session start", $msisdn, $message, 1);
+            return Config::MAX_TIME;
+         }
+        if ($diff > 0 && $accountData['processingStatus'] == Config::ACTIVE){
+            //ACTIVE  session. ..STOP IT
+//            die($message . " ". strlen($message));
+            $this->stopSession($accountData['customerProfileAccountID']);
+            $message = $this->coreUtils->formatMessage(Config::STOP_SESSION,
+                $accountData);
+            $this->coreUtils->logSMS("session stop", $msisdn, $message, 1);
+            return Config::SESSION_END;
+         }
+        if ($diff < 0 && $accountData['processingStatus'] != Config::ACTIVE){
+            // expiry date is in future ..start a session.
+//            die($message . " ". strlen($message));
+            $this->coreUtils->logSMS("session start", $msisdn, $message, 1);
+
             return Config::MAX_TIME;
          } else{
+            $this->coreUtils->logSMS("card expired", $msisdn, $message, 2);
             //card expired
          }
+    }
+
+    function stopSession($customerProfileAccountID) {
+
+        $this->benchmark->start();
+        $results = array();
+        $this->log->debug(Config::debug, -1,
+            "Proceeding to stop active session  "
+            . $this->log->printArray($request));
+
+        $updateParams = array();
+        try {
+            $cutomerProfiles = customerAccounts::find($customerProfileAccountID);
+            $cutomerProfiles->expiryTime = date(Config::DATE_TIME_FORMAT);
+            $cutomerProfiles->processingStatus = StatusCodes::REQUEST_INPROCESS;
+            if ($cutomerProfiles->save()){
+                $this->log->info(Config::info, -1,
+                    "customer accounts [ID: $customerProfileAccountID] "
+                    . "record updated successfully: ");
+            } else {
+                $this->log->error(Config::error, -1,
+                    "Failed to save update request: ");
+            }
+        } catch (\Exception $ex) {
+            $this->log->error(Config::error, -1,
+                "An Error Occurred" . $ex->getMessage());
+        }
+        return $updateResult;
+    }
+
+    function startSession($customerProfileAccountID, $locationID) {
+
+        $this->benchmark->start();
+        $results = array();
+        $this->log->debug(Config::debug, -1,
+            "Proceeding to stop active session  ");
+
+        $updateParams = array();
+        try {
+            $statusDesc = "session start.";
+            $this->coreUtils->logSession($customerProfileAccountID, $locationID,
+                $statusDesc);
+            $maxTime = Config::MAX_MINUTES;
+            $cutomerProfiles = customerAccounts::find($customerProfileAccountID);
+            $newdDate = date(Config::DATE_TIME_FORMAT,
+                strtotime(date(Config::DATE_TIME_FORMAT) . ''
+                    . ' + ' . $maxTime . ' minutes'));
+            $cutomerProfiles->expiryTime = $newdDate;
+            $cutomerProfiles->processingStatus = StatusCodes::ACTIVE;
+            $cutomerProfiles->startTime = date(Config::DATE_TIME_FORMAT);
+            if ($cutomerProfiles->save()){
+                $this->log->info(Config::info, -1,
+                    "customer accounts [ID: $customerProfileAccountID] record updated successfully: ");
+            } else {
+                $this->log->error(Config::error, -1,
+                    "Failed to save update request: ");
+            }
+        } catch (\Exception $ex) {
+            $this->log->error(Config::error, -1,
+                "An Error Occurred" . $ex->getMessage());
+        }
+        return $updateResult;
     }
 
     function createPoSRequest($request) {
@@ -510,36 +612,6 @@ class PosController
             $result['userID'] = -1;
         }
         return $result;
-    }
-
-    /**
-     *
-     * @param type $username
-     * @param type $emailAddress
-     * @param type $password
-     * @return boolean
-     */
-    function updateUserCas($username, $emailAddress, $password) {
-        $url = Config::CAS_SET_PASSWORD;
-        $parameters = array(
-            'userName' => $username,
-            'emailAddress' => $emailAddress,
-            'requestOrigin' => Config::CAS_REQUEST_ORIGIN,
-            'newPassword' => $password);
-        $this->log->debug(Config::debug, $username,
-            "Params to update CAS " . $this->log->printArray($parameters));
-        $updatePassword = CoreUtils::post($url, json_encode($parameters));
-        $this->log->debug(Config::debug, $username,
-            "Response from Cas: " . $this->log->printArray($updatePassword));
-        if ($updatePassword['SUCCESS'] == 'FALSE') {
-            $this->log->error(Config::error, -1,
-                "Syncing user password to cas failed  ");
-            return FALSE;
-        } else {
-            $this->log->info(Config::info, -1,
-                "Password successfully updated on cas ");
-            return TRUE;
-        }
     }
 
 }

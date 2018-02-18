@@ -54,8 +54,7 @@ class API extends REST
             $this->log->debugLog(
                 Config::INFO, 0, "Pass key verified successfully "
             );
-        }
-        else {
+        } else {
             $this->log->debugLog(
                 Config::INFO, 0, "unable to verify Pass key"
             );
@@ -63,14 +62,11 @@ class API extends REST
             $this->response($resp, 404);
             exit();
         }
-
-        if (isset($_POST) && !empty($_POST)) {
-            $params = $_POST;
-        }
-        elseif (isset($post) && !empty($post)) {
+        if (isset($post) && !empty($post)) {
             $params = json_decode($post, TRUE);
-        }
-        else {
+        } elseif (isset($_POST) && !empty($_POST)) {
+            $params = $_POST;
+        } else {
             $resp = $this->coreRequests->failedResponse("Unrecognised request."
                 . " Only POST is accepted");
             $this->response($resp, 404);
@@ -97,8 +93,7 @@ class API extends REST
                 . " \n and params are " . print_r($params, TRUE)
             );
             $this->coreRequests->accountBraodcast($params);
-        }
-        else {
+        } else {
             /*
              *  If the method not exist with in this class,
              * response would be "Function Not Found".

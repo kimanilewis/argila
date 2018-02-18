@@ -10,6 +10,7 @@ Use Argila\ArgilaCoreAPI\Utilities\SyncLogger as logger;
 Use Argila\ArgilaCoreAPI\Utilities\Database as dbConn;
 use Argila\ArgilaCoreAPI\Config\Config as Config;
 use Argila\ArgilaCoreAPI\Config\StatusCodes;
+//use Argila\ArgilaCoreAPI\Models\sms_requests as sms;
 use Ubench as benchmark;
 
 class CoreUtils
@@ -195,6 +196,8 @@ class CoreUtils
                     'customerProfileAccountID',
                     'customerProfileID',
                     'expiryDate',
+                    'MSISDN',
+                    'customerName',
                     'startTime',
                     'processingStatus',
                     'expiryTime'))
@@ -229,25 +232,24 @@ class CoreUtils
      * @param type $clientCode
      * @return type ARRAY
      */
-    public function checkUser($userName) {
+    public function getLocation($venue_id) {
         try {
             $db = $this->dbConn->DBConn();
             //Results for a user
-            $result = $db->from('users')
-                ->where('userName')->is($userName)
+            $result = $db->from('locations')
+                ->where('venue_id')->is($venue_id)
                 ->select(array(
-                    'userName',
-                    'userID',
-                    'clientID',
-                    'active',
-                    'emailAddress'))
+                    'locationName',
+                    'locationID',
+                    'advert',
+                    'active'))
                 ->all();
-            $this->log->sequel(Config::debug, $userName,
+            $this->log->sequel(Config::debug, $venue_id,
                 "Execute Query : "
                 . $this->log->printArray($db->getLog()));
             $response = array();
             if (count($result) > 0) {
-                $this->log->info(Config::info, $userName,
+                $this->log->info(Config::info, $venue_id,
                     "Query Sussefully executed. Found " . count($result)
                     . " Records. Values" . $this->log->printArray($result));
                 $response = $result[0];
@@ -285,10 +287,12 @@ class CoreUtils
                 ->andWhere('customer_accounts.active')->is(Config::ACTIVE)
                 ->select(array(
                     'accountNumber',
+                    'customerName',
                     'customerProfileAccountID',
                     'balanceCarriedForward',
                     'expiryDate',
                     'MSISDN',
+                    'processingStatus',
                     'customerProfiles.customerProfileID',
                     'customer_accounts.active'))
                 ->all();
@@ -405,49 +409,6 @@ class CoreUtils
     }
 
     /**
-     *
-     * @param type $userID
-     * @return type ARRAY
-     */
-    public function createUserGroup($userID) {
-        try {
-            $db = $this->dbConn->DBConn();
-            //Results for a user
-            $result = $db->insert(array(
-                    'userID' => $userID,
-                    'groupID' => Config::MERCHANT_ADMIN_GROUPID,
-                    'dateCreated' => date(Config::DATE_TIME_FORMAT),
-                    'active' => StatusCodes::ACTIVE))
-                ->into('userGroups');
-            $this->log->sequel(Config::debug, $userID,
-                "Execute Query : "
-                . $this->log->printArray($db->getLog()));
-            $response = array();
-            if (count($result) > 0) {
-                $this->log->info(Config::info, $userID,
-                    "Query Sussefully executed. Found " . count($result)
-                    . " Records.");
-                $this->log->info(Config::info, $userID,
-                    "Query Sussefully executed. Found "
-                    . $this->log->printArray($result) . " Records.");
-                $response = count($result);
-            } else {
-                $this->log->info(Config::debug, $userID,
-                    "Unable to identify a duplicate request: Results "
-                    . $this->log->printArray($result));
-            }
-        } catch (SQLException $e) {
-            $this->log->error(Config::error, -1,
-                "Mysql Error while fetching request details: "
-                . $e->getMessage());
-        } catch (Exception $e) {
-            $this->log->error(Config::error, -1,
-                "Error while fetching request details: " . $e->getMessage());
-        }
-        return $response;
-    }
-
-    /**
      * Update request status
      * @param type $primaryKeyID
      * @param type $primaryIDName
@@ -510,35 +471,37 @@ class CoreUtils
 
     /**
      *
-     * @param type $userID
+     * @param type $statusDesc
+     * @param type $msisdn
+     * @param type $message
+     * @param type $template
      * @return type ARRAY
      */
-    public function logEmail($userID, $email, $messageParams) {
+    public function logSMS($statusDesc, $msisdn, $message, $template) {
         try {
             $db = $this->dbConn->DBConn();
             //Results for a user
             $result = $db->insert(array(
-                    'emailQueueID' => null,
-                    'emailDestination' => $email,
-                    'emailFrom' => Config::EMAIL_FROM,
-                    'messageParams' => $messageParams,
-                    'templateID' => Config::EMAIL_TEMPLATE_ID,
-                    'clientID' => Config::ADMIN_ID,
-                    'emailSubject' => "CONFIRM USER| MULA CHECKOUT",
+                    'smsID' => null,
+                    'templateID' => $template,
+                    'destination' => $msisdn,
+                    'message' => $message,
+//                    'status' => StatusCodes::ACTIVE,
+                    'statusDesription' => $statusDesc,
                     'dateCreated' => date(Config::DATE_TIME_FORMAT),
-                    'active' => StatusCodes::ACTIVE))
-                ->into('emailQueue');
-            $this->log->sequel(Config::debug, $userID,
+                ))
+                ->into('sms_requests');
+            $this->log->sequel(Config::debug, $msisdn,
                 "Execute Query : "
                 . $this->log->printArray($db->getLog()));
             $response = array();
             if (count($result) > 0) {
-                $this->log->info(Config::info, $userID,
+                $this->log->info(Config::info, $msisdn,
                     "Query Sussefully executed. Found " . count($result)
                     . " Records. Values: " . $this->log->printArray($result));
                 $response = $result[0];
             } else {
-                $this->log->info(Config::debug, $userID,
+                $this->log->info(Config::debug, $msisdn,
                     "No duplicate user: Results "
                     . $this->log->printArray($result));
             }
@@ -551,6 +514,58 @@ class CoreUtils
                 "Error while fetching request details: " . $e->getMessage());
         }
         return $response;
+    }
+
+    public function logSession($customerProfileAccountID, $locationID, $statusDesc) {
+        try {
+            $db = $this->dbConn->DBConn();
+            //Results for a user
+            $result = $db->insert(array(
+                    'sessionDataID' => null,
+                    'customerProfileAccountID' => $customerProfileAccountID,
+                    'LocationID' => $locationID,
+                    'syncStatus' => StatusCodes::ACTIVE,
+//                    'status' => StatusCodes::ACTIVE,
+                    'syncStatusDescription' => $statusDesc,
+                    'dateCreated' => date(Config::DATE_TIME_FORMAT),
+                ))
+                ->into('session_data');
+            $this->log->sequel(Config::debug, $customerProfileAccountID,
+                "Execute Query : "
+                . $this->log->printArray($db->getLog()));
+            $response = array();
+            if (count($result) > 0) {
+                $this->log->info(Config::info, $customerProfileAccountID,
+                    "Query Sussefully executed. Found " . count($result)
+                    . " Records. Values: " . $this->log->printArray($result));
+                $response = $result[0];
+            } else {
+                $this->log->info(Config::debug, $customerProfileAccountID,
+                    "No duplicate user: Results "
+                    . $this->log->printArray($result));
+            }
+        } catch (SQLException $e) {
+            $this->log->error(Config::error, -1,
+                "Mysql Error while fetching request details: "
+                . $e->getMessage());
+        } catch (Exception $e) {
+            $this->log->error(Config::error, -1,
+                "Error while fetching request details: " . $e->getMessage());
+        }
+        return $response;
+    }
+
+    function formatMessage($message, $params = array()) {
+
+        $this->log->sequel(Config::debug, 0,
+            "message params : "
+            . $this->log->printArray($params));
+        foreach ($params as $param => $value) {
+            $param = strtoupper($param);
+            $message = str_replace($param, $value, $message);
+        }
+
+        return $message;
     }
 
     /*

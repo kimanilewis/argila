@@ -1,0 +1,151 @@
+Switching umask back to 002 from 077
+Cannot open PID file /var/run/coreUpdater.pid, PID is 7680
+Service exit with a return value of 255
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xDDD56270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/argilaV2/smsSender/dist/smsSender.jar:/srv/applications/argilaV2/smsSender/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-codec-1.6.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-dbcp-1.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-httpclient-3.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-logging-1.1.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-logging-1.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-pool-1.6.jar:/srv/applications/argilaV2/smsSender/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/gson-2.2.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpclient-4.2.5.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpmime-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/json.jar:/srv/applications/argilaV2/smsSender/dist/lib/log4j-1.2.16.jar:/srv/applications/argilaV2/smsSender/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/argilaV2/smsSender/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/argilaV2/smsSender/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/argilaV2/smsSender/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=7719" (0x00000000)
+|   "-Dcommons.daemon.process.parent=7718" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/7719.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/7719.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0xA9319270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/argilaV2/smsSender/dist/smsSender.jar:/srv/applications/argilaV2/smsSender/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-codec-1.6.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-dbcp-1.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-httpclient-3.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-logging-1.1.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-logging-1.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-pool-1.6.jar:/srv/applications/argilaV2/smsSender/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/gson-2.2.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpclient-4.2.5.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpmime-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/json.jar:/srv/applications/argilaV2/smsSender/dist/lib/log4j-1.2.16.jar:/srv/applications/argilaV2/smsSender/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/argilaV2/smsSender/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/argilaV2/smsSender/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/argilaV2/smsSender/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=7928" (0x00000000)
+|   "-Dcommons.daemon.process.parent=7927" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/7928.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/7928.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x34FBD270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/argilaV2/smsSender/dist/smsSender.jar:/srv/applications/argilaV2/smsSender/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-codec-1.6.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-dbcp-1.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-httpclient-3.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-logging-1.1.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-logging-1.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-pool-1.6.jar:/srv/applications/argilaV2/smsSender/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/gson-2.2.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpclient-4.2.5.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpmime-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/json.jar:/srv/applications/argilaV2/smsSender/dist/lib/log4j-1.2.16.jar:/srv/applications/argilaV2/smsSender/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/argilaV2/smsSender/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/argilaV2/smsSender/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/argilaV2/smsSender/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=8140" (0x00000000)
+|   "-Dcommons.daemon.process.parent=8139" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/8140.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/8140.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down
+Switching umask back to 022 from 077
+Using default JVM in /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+Attemtping to load library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so
+JVM library /usr/lib/jvm/java-7-oracle/jre/lib/amd64/server/libjvm.so loaded
+JVM library entry point found (0x80AA1270)
++-- DUMPING JAVA VM CREATION ARGUMENTS -----------------
+| Version:                       0x010004
+| Ignore Unrecognized Arguments: True
+| Extra options:                 3
+|   "-Xms256m" (0x00000000)
+|   "-Xmx256m" (0x00000000)
+|   "-Djava.class.path=/srv/applications/argilaV2/smsSender/dist/smsSender.jar:/srv/applications/argilaV2/smsSender/dist/lib/JavaEncryptionLibrary.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-codec-1.6.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-daemon-1.0.10.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-dbcp-1.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-httpclient-3.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-logging-1.1.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-logging-1.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/commons-pool-1.6.jar:/srv/applications/argilaV2/smsSender/dist/lib/fluent-hc-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/gson-2.2.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpclient-4.2.5.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpclient-cache-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.4.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpcore-4.2.jar:/srv/applications/argilaV2/smsSender/dist/lib/httpmime-4.2.1.jar:/srv/applications/argilaV2/smsSender/dist/lib/json.jar:/srv/applications/argilaV2/smsSender/dist/lib/log4j-1.2.16.jar:/srv/applications/argilaV2/smsSender/dist/lib/mysql-connector-java-5.1.19-bin.jar:/srv/applications/argilaV2/smsSender/dist/lib/ws-commons-util-1.0.2.jar:/srv/applications/argilaV2/smsSender/dist/lib/xmlrpc-client-3.1.3.jar:/srv/applications/argilaV2/smsSender/dist/lib/xmlrpc-common-3.1.3.jar" (0x00000000)
++-------------------------------------------------------
+| Internal options:              4
+|   "-Dcommons.daemon.process.id=9154" (0x00000000)
+|   "-Dcommons.daemon.process.parent=9153" (0x00000000)
+|   "-Dcommons.daemon.version=1.0.15-dev" (0x00000000)
+|   "abort" (0x00405a70)
++-------------------------------------------------------
+Java VM created successfully
+Class org/apache/commons/daemon/support/DaemonLoader found
+Native methods registered
+java_init done
+Daemon loading...
+Daemon loaded successfully
+java_load done
+Daemon started successfully
+java_start done
+Waiting for a signal to be delivered
+create_tmp_file: /tmp/9154.jsvc_up
+Caught SIGTERM: Scheduling a shutdown
+remove_tmp_file: /tmp/9154.jsvc_up
+Shutdown or reload requested: exiting
+Daemon stopped successfully
+Daemon destroyed successfully
+Calling System.exit(0)
+Service shut down

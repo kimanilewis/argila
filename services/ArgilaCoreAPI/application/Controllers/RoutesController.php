@@ -47,10 +47,10 @@ class RoutesController
         $requestData = $request->body();
         $route = $request->params()[0];
         $route = str_replace("/", "", $route);
+        $this->data =  json_decode($requestData, true);
         $this->log->info(Config::info, -1,
             "Received $route request  with parameters :"
-            . $this->log->printArray($request));
-        $this->data = json_decode($requestData, true);
+            . $this->log->printArray( $this->data ));
         $this->data['route'] = $route;
         $this->response = $response;
         $this->log->info(Config::info, -1,
@@ -137,6 +137,7 @@ class RoutesController
                 $result['Status'] = "The function Specified is Invalid";
                 break;
         }
+
         $this->log->debug(Config::debug, -1,
             "Response Result...........  "
             . $this->log->printArray($result));

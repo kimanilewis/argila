@@ -1,2 +1,6 @@
 /ArgilaJava/ArgilaMQTTClient/nbproject/private/
 /DB/
+/services/ArgilaCoreAPI/nbproject/private/
+/smsSender/nbproject/private/
+/smsSender/build/
+/smsSender/dist/

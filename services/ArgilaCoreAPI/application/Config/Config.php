@@ -41,11 +41,20 @@ class Config
     const FAILED_RESPONSE = 'SC0000Z';
     const SESSION_END = 'SC9999Z';
     const MAX_TIME = 'SC0045Z';
+    const MAX_MINUTES = 45;
     const ACTIVE = 1;
     const CREATED = 2;
     //Mpesa 
     const SUCCESSFUL_MPESA_REQUEST = 0;
     const FAILED_MPESA_REQUEST = -1;
     const COST_PER_UNIT = 100;
+    //sms
+    const START_SESSION = "Dear CUSTOMERNAME, A session has been started with your card number - ACCOUNTNUMBER at LOCATIONNAME. MESSAGE ";
+    const STOP_SESSION = "Dear CUSTOMERNAME, Your charging session has ended. Thank you for choosing #Tap&Charge.  MESSAGE ";
+    const NEW_ACCOUNT = "Dear CUSTOMERNAME, Your card number ACCOUNTNUMBER has been activated. Thank you for choosing #Tap&Charge.";
+    const TOP_UP = "Dear CUSTOMERNAME, Your #Tap&Charge subscription has been successfully renewed for card number -ACCOUNTNUMBER. Expiry date EXPIRYDATE ";
+    const UNKNOWN_ACCOUNT = "Dear customer, Request failed. Card number entered doesn't exist. Please enter the card number specified on your card. For more info visit www.argilaTech.com";
+    const UNDER_PAYMENT = "Dear CUSTOMERNAME, Your #Tap&Charge subscription has been successfully received for card number -ACCOUNTNUMBER. Kindly top up KES BALANCE .You account balance is KES BALANCECARRIEDFORWARD.";
 
+//    const 
 }
