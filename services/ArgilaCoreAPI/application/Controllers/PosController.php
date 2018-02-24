@@ -77,8 +77,9 @@ class PosController
         $locationDetails = $this->coreUtils->getLocation($request['credentials']['location_id']);
         $accountData['locationName'] = $locationDetails['locationName'];
         $locationID = $locationDetails['locationID'];
-        $accountData['customerName'] == NULL || empty($accountData['customerName']) ? $accountData['customerName']
-                = "Customer" : $accountData['customerName'];
+        $accountData['customerName'] == NULL ||
+            empty($accountData['customerName']) ?
+                $accountData['customerName'] = "Customer" : $accountData['customerName'];
         $accountData['message'] = $locationDetails['advert'];
         $message = $this->coreUtils->formatMessage(Config::START_SESSION,
             $accountData);
@@ -92,7 +93,6 @@ class PosController
          }
         if ($diff > 0 && $accountData['processingStatus'] == Config::ACTIVE){
             //ACTIVE  session. ..STOP IT
-//            die($message . " ". strlen($message));
             $this->stopSession($accountData['customerProfileAccountID']);
             $message = $this->coreUtils->formatMessage(Config::STOP_SESSION,
                 $accountData);
@@ -102,12 +102,13 @@ class PosController
         if ($diff < 0 && $accountData['processingStatus'] != Config::ACTIVE){
             // expiry date is in future ..start a session.
 //            die($message . " ". strlen($message));
-            $this->coreUtils->logSMS("session start", $msisdn, $message, 1);
-
+            $this->coreUtils->logSMS("account expired", $msisdn, $message, 1);
+            $this->initiateCheckout($accountData);
             return Config::MAX_TIME;
          } else{
             $this->coreUtils->logSMS("card expired", $msisdn, $message, 2);
             //card expired
+            return Config::FAILED_RESPONSE;
          }
     }
 
@@ -319,17 +320,6 @@ class PosController
                     $result['statusDescription'] = $statusDescription;
                     return $result;
                 }
-                /**
-                 * Beloe lines sets up the default parameters of
-                 *  before creating the model
-                 */
-                $user->passwordStatusID = Config::DEFAULT_PASSWORD_STATUS;
-                $user->datePasswordChanged = date(Config::DATE_TIME_FORMAT);
-                $user->dateActivated = date(Config::DATE_TIME_FORMAT);
-                $user->dateCreated = date(Config::DATE_TIME_FORMAT);
-                $user->active = StatusCodes::CREATED;
-                $user->updatedBy = StatusCodes::PROCESSED_REQUEST;
-                $user->createdBy = StatusCodes::PROCESSED_REQUEST;
             }
             /**
              * *****************************************************************
@@ -488,6 +478,34 @@ class PosController
             return $result;
         }
         return $result;
+    }
+
+    function initiateCheckout($params) {
+        $this->benchmark->start();
+        $results = array();
+        $this->log->info(Config::info, -1,
+            "Proceeding to initiate  "
+            . "mpesa checkout request ");
+
+        $transaction_id = $params['accountNumber']
+            . date(Config::DATE_TIME_FORMAT);
+        $reference_id = $params['customerProfileAccountID'];
+        $amount = Config::COST_PER_UNIT;
+        $phone = $params['MSISDN'];
+        $callback = Config::MPESA_CALLBACK;
+
+        $packet = array(
+            "transaction_id" => $transaction_id,
+            "reference_id" => $reference_id,
+            "amount" => $amount,
+            "phone" => $phone,
+            "callback" => $callback
+        );
+        $response = $this->coreUtils->post(Config::CHECKOUT_URL, $packet);
+        $mpesaResponse = json_decode($response, TRUE);
+        $this->log->info(Config::info, -1,
+            "Response from  "
+            . "mpesa checkout request " . $this->log->printArray($mpesaResponse));
     }
 
     /**

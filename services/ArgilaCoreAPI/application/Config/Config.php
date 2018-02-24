@@ -56,5 +56,7 @@ class Config
     const UNKNOWN_ACCOUNT = "Dear customer, Request failed. Card number entered doesn't exist. Please enter the card number specified on your card. For more info visit www.argilaTech.com";
     const UNDER_PAYMENT = "Dear CUSTOMERNAME, Your #Tap&Charge subscription has been successfully received for card number -ACCOUNTNUMBER. Kindly top up KES BALANCE .You account balance is KES BALANCECARRIEDFORWARD.";
 
+    const MPESA_CALLBACK ="http://localhost/argilaCore/index.php/mpesa_request";
+    const CHECKOUT_URL ="http://68.168.102.159/c2b/online";
 //    const 
 }
