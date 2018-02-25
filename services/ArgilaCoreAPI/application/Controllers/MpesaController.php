@@ -220,7 +220,7 @@ class MpesaController
         }
     }
 
-    public function validateMpesaRequest($param) {
+    public function validateMpesaRequest($request) {
         $this->benchmark->start();
         $this->log->info(Config::info, -1,
             "Received mpesa request for validation"
