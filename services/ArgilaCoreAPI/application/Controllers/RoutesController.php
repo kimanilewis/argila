@@ -133,6 +133,10 @@ class RoutesController
                 $servicesRequest = new MpesaController();
                 $result = $servicesRequest->processMpesaRequest($request);
                 break;
+             case 'mpesa_validate':
+                $servicesRequest = new MpesaController();
+                $result = $servicesRequest->validateMpesaRequest($request);
+                break;
             default :
                 $result['Status'] = "The function Specified is Invalid";
                 break;

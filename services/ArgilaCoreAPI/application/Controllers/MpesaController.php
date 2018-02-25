@@ -220,6 +220,97 @@ class MpesaController
         }
     }
 
+    public function validateMpesaRequest($param) {
+        $this->benchmark->start();
+        $this->log->info(Config::info, -1,
+            "Received mpesa request for validation"
+            . $this->log->printArray($request));
+        $results = array();
+        $response['accept'] = -1;
+        $this->log->info(Config::info, -1,
+            "Proceeding to validate  "
+            . " mpesa request ");
+        $validator = new Validation();
+        /**
+         * *********************************************************************
+         * validate incoming datatypes, and verify required params are available
+         */
+        $rules = $validator->rules['mpesa_request'];
+        $requestData = $request;
+        $this->log->info(Config::info, -1,
+            "Received mpesa data...."
+            . $this->log->printArray($request));
+        $statusDescription = "invalid parameters: ";
+        $cardDetails = array();
+        $sms_template = "";
+//         $accountProfileDetails = 
+        try {
+
+            if ($this->helpers->validateParams($requestData, $rules)) {
+                $this->log->info(Config::info, -1,
+                    "Request successfully validated."
+                    . " Proceeding to validate account details."
+                    . $this->log->printArray($rules));
+
+                /**
+                 * *************************************************************
+                 * validate mandatory parameter for mpesa model
+                 */
+                $accountNumber = $requestData['BillRefNumber'];
+                $msisdn = $requestData['MSISDN'];
+                $kycinfo = json_decode($requestData['KYCInfo'], true);
+                $firstName = $kycinfo[0]['KYCValue'];
+                $lastName = $kycinfo[1]['KYCValue'];
+                $customerName = $firstName . " " . $lastName;
+                $this->log->info(Config::info, $accountNumber,
+                    "account profile does not exist:"
+                    . "  About to check if its a valid card "
+                    . $this->log->printArray($customerName));
+                $request['customerName'] = $customerName;
+                $accountProfileDetails = $this->coreUtils->checkAccountProfile($accountNumber);
+                if (count($accountProfileDetails) > 0) {
+                    $this->log->info(Config::info, $accountNumber,
+                        "account profile exists: Accept request "
+                        . $this->log->printArray($accountProfileDetails));
+                    $response['accept'] = Config::SUCCESSFUL_MPESA_REQUEST;
+                    return $response;
+
+                } else {
+                    $this->log->info(Config::info, $accountNumber,
+                        "account profile does not exist:"
+                        . "  About to check if its a valid card "
+                        . $this->log->printArray($accountProfileDetails));
+
+                    $cardDetails = $this->coreUtils->checkCardDetails($accountNumber);
+                    if (count($cardDetails) > 0) {
+                        $this->log->info(Config::info, $accountNumber,
+                            " card details exists: Accept request "
+                            . $this->log->printArray($cardDetails));
+                        $response['accept'] = Config::SUCCESSFUL_MPESA_REQUEST;
+                        return $response;
+                        } else {
+                        $this->log->info(Config::info, $accountNumber,
+                            "account profile does not exist:"
+                            . "  exiting... Rejecting request "
+                            . $this->log->printArray($cardDetails));
+                        return $response;
+
+                        }
+                }
+            }
+        } catch (\Exception $ex) {
+            $this->log->error(Config::info, -1,
+                "An Error Occurred: " . $ex->getMessage());
+            $result['statusCode'] = StatusCodes::GENERIC_FAILURE_STATUS_CODE;
+            $result['statusDescription'] = $ex->getMessage();
+            $result['transactionID'] = -1;
+            $this->log->error(Config::info, -1,
+                "An Error Occurred: " . $ex->getMessage());
+            $response['accept'] = Config::FAILED_MPESA_REQUEST;
+            return $response;
+        }
+    }
+
     private function saveCustomerAccount($request, $cardDetails) {
         $this->benchmark->start();
         $results = array();

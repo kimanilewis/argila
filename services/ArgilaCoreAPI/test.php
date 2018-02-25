@@ -1,9 +1,8 @@
 <?php
 
-$apiUrl = "http://localhost/argilaCore/index.php/mpesa_request";
-//$apiUrl = "http://localhost/argilaCore/index.php/pos";
+//$apiUrl = "http://68.168.102.159/argilaCore/index.php/mpesa_request";
+$apiUrl = "http://68.168.102.159/argilaCore/index.php/pos";
 $password = "2018-04-11 20:55:22";
-
 
 $posRequest = '{"credentials":{"Token":"bigsquare998874","location_id":"1234ABCB"},'
     . '"payload":{"accountNumber":"394687UJ","batteryLevel":"1030","source":"pos"}}';
@@ -34,7 +33,7 @@ $mpesaRequest = array(
     . '    }  ]',
 );
 
-$response = post($apiUrl, $mpesaRequest);
+$response = post($apiUrl, $posRequest);
 
 print_r($response);
 

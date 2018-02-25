@@ -30,5 +30,14 @@ $rqProcessor->respond(array('POST', 'PUT'), '/mpesa_request',
     $API = new route();
     $API->run($request, $response);
 });
+//Mpesa end point
+$rqProcessor->respond(array('POST', 'PUT'), '/mpesa_validate',
+    function($request, $response, $service) {
+
+    /////All the headers that are Actually
+    $request->headers;
+    $API = new route();
+    $API->run($request, $response);
+});
 $rqProcessor->dispatch();
 
