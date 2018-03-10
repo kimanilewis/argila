@@ -88,7 +88,7 @@ class MpesaController
                  */
                 $accountNumber = $requestData['BillRefNumber'];
                 $msisdn = $requestData['MSISDN'];
-                $kycinfo = json_decode($requestData['KYCInfo'], true);
+                $kycinfo = $requestData['KYCInfo'];
                 $firstName = $kycinfo[0]['KYCValue'];
                 $lastName = $kycinfo[1]['KYCValue'];
                 $customerName = $firstName . " " . $lastName;
