@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Fetch records class
  *
- * @author lewis.kimani <lewis.kimani@cellulant.com>
+ * @author lewis.kimani
  */
 @SuppressWarnings({"ClassWithoutLogger", "FinalClass"})
 public final class FetchAccounts {

@@ -45,6 +45,7 @@ public final class CoreUtils {
      * @param statHistory the status history
      * @param dte the date
      * @param oStatus the overall status
+     * @param aID id
      * @param log log class instance
      *
      * @return the status history string

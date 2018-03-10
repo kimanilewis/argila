@@ -19,7 +19,7 @@ import org.apache.commons.daemon.DaemonInitException;
 
 /**
  *
- * @author Lewis Kimani < kimanilewi@gmail.com>
+ * @author Lewis Kimani
  */
 public final class CoreUpdaterDaemon implements Daemon, Runnable {
 

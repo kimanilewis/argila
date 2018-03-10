@@ -404,7 +404,7 @@ public final class Props {
 
     /**
      *
-     * @return
+     * @return failedQueries
      */
     public String getFailedQueryFile() {
         return failedQueries;
@@ -431,7 +431,7 @@ public final class Props {
     /**
      * Returns API Key
      *
-     * @return
+     * @return authorizationKey
      */
     public String getAuthorizationKey() {
         return authorizationKey;
