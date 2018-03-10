@@ -534,7 +534,7 @@ class PosController
             "msisdn" => $phone,
             "callback" => $callback
         );
-        $response = $this->coreUtils->post(Config::CHECKOUT_URL, $packet);
+        $response = $this->coreUtils->post(Config::CHECKOUT_STK_, $packet);
         $mpesaResponse = json_decode($response, TRUE);
         $this->log->info(Config::info, -1,
             "Response from  "
