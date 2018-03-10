@@ -50,8 +50,8 @@ function post($url = "", $fields = array()) {
     curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
     curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');
     curl_setopt($ch, CURLOPT_POST, count($fields));
-//    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, (json_encode($fields)));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+//    curl_setopt($ch, CURLOPT_POSTFIELDS, (json_encode($fields)));
     $result = curl_exec($ch);
     curl_close($ch);
     return $result;

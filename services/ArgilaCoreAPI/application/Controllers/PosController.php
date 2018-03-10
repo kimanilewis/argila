@@ -99,7 +99,7 @@ class PosController
             $this->coreUtils->logSMS("session stop", $msisdn, $message, 1);
             return Config::SESSION_END;
          }
-        if ($diff < 0 && $accountData['processingStatus'] != Config::ACTIVE){
+        if ($diff <= 0){
             // expiry date is in future ..start a session.
 //            die($message . " ". strlen($message));
             $this->coreUtils->logSMS("account expired", $msisdn, $message, 1);
