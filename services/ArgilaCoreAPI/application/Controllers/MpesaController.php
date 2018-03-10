@@ -452,7 +452,7 @@ class MpesaController
         $payment->MSISDN = $param['MSISDN'];
         $payment->amountPaid = $param['TransAmount'];
         $payment->payerClient = 'mpesa';
-        $payment->paymentInfo = trim($param['KYCInfo']);
+        $payment->paymentInfo = trim(json_encode($param['KYCInfo']));
         $payment->paymentDateReceived = date(Config::DATE_TIME_FORMAT);
         $payment->dateCreated = date(Config::DATE_TIME_FORMAT);
         $payment->save();

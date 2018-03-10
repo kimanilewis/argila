@@ -103,7 +103,7 @@ class PosController
             // expiry date is in future ..start a session.
 //            die($message . " ". strlen($message));
             $this->coreUtils->logSMS("account expired", $msisdn, $message, 1);
-            $this->initiateCheckout($accountData);
+            $this->initiateCheckoutSTK($accountData);
             return Config::MAX_TIME;
          } else{
             $this->coreUtils->logSMS("card expired", $msisdn, $message, 2);
@@ -499,6 +499,34 @@ class PosController
             "reference_id" => $reference_id,
             "amount" => $amount,
             "phone" => $phone,
+            "callback" => $callback
+        );
+        $response = $this->coreUtils->post(Config::CHECKOUT_URL, $packet);
+        $mpesaResponse = json_decode($response, TRUE);
+        $this->log->info(Config::info, -1,
+            "Response from  "
+            . "mpesa checkout request " . $this->log->printArray($mpesaResponse));
+    }
+
+    function initiateCheckoutSTK($params) {
+        $this->benchmark->start();
+        $results = array();
+        $this->log->info(Config::info, -1,
+            "Proceeding to initiate  "
+            . "mpesa checkout request ");
+
+        $transaction_id = $params['accountNumber']
+            . date(Config::DATE_TIME_FORMAT);
+        $reference_id = $params['customerProfileAccountID'];
+        $amount = Config::COST_PER_UNIT;
+        $phone = $params['MSISDN'];
+        $callback = Config::MPESA_CALLBACK;
+
+        $packet = array(
+            "account_reference" => $transaction_id,
+            "account_reference" => $reference_id,
+            "amount" => $amount,
+            "msisdn" => $phone,
             "callback" => $callback
         );
         $response = $this->coreUtils->post(Config::CHECKOUT_URL, $packet);

@@ -55,8 +55,9 @@ class Config
     const TOP_UP = "Dear CUSTOMERNAME, Your #Tap&Charge subscription has been successfully renewed for card number -ACCOUNTNUMBER. Expiry date EXPIRYDATE ";
     const UNKNOWN_ACCOUNT = "Dear customer, Request failed. Card number entered doesn't exist. Please enter the card number specified on your card. For more info visit www.argilaTech.com";
     const UNDER_PAYMENT = "Dear CUSTOMERNAME, Your #Tap&Charge subscription has been successfully received for card number -ACCOUNTNUMBER. Kindly top up KES BALANCE .You account balance is KES BALANCECARRIEDFORWARD.";
+    const MPESA_CALLBACK = "http://localhost/argilaCore/index.php/mpesa_request";
+    const CHECKOUT_URL = "http://68.168.102.159/c2b/online";
+    const CHECKOUT_STK_ = "http://10.172.71.110:20800/c2b/api/online";
 
-    const MPESA_CALLBACK ="http://localhost/argilaCore/index.php/mpesa_request";
-    const CHECKOUT_URL ="http://68.168.102.159/c2b/online";
 //    const 
 }
