@@ -102,6 +102,7 @@ class MpesaController
                     $this->log->info(Config::info, $accountNumber,
                         "account profile exists: About to update account "
                         . $this->log->printArray($accountProfileDetails));
+                    $msisdn = $accountProfileDetails['MSISDN'];
                     $updateResponse = $this->updateAccountDetails($request,
                         $accountProfileDetails);
                     $accountProfileDetails['balanceCarriedForward'] = $this->newBCF;
@@ -192,6 +193,7 @@ class MpesaController
                     empty($accountProfileDetails['customerName']) ? $accountProfileDetails['customerName']
                         = "Customer" : $accountProfileDetails['customerName'];
                 $accountProfileDetails['balance'] = $this->balance;
+                $msisdn = $accountProfileDetails['MSISDN'];
                 $message = $this->coreUtils->formatMessage($sms_template,
                     $accountProfileDetails);
                 $this->coreUtils->logSMS("account top up", $msisdn, $message, 1);
@@ -267,8 +269,9 @@ class MpesaController
                     . "  About to check if its a valid card "
                     . $this->log->printArray($customerName));
                 $request['customerName'] = $customerName;
-                $accountProfileDetails = $this->coreUtils->checkAccountProfile($accountNumber);
+                $accountPrxofileDetails = $this->coreUtils->checkAccountProfile($accountNumber);
                 if (count($accountProfileDetails) > 0) {
+                    $msisdn = $accountProfileDetails['MSISDN'];
                     $this->log->info(Config::info, $accountNumber,
                         "account profile exists: Accept request "
                         . $this->log->printArray($accountProfileDetails));
