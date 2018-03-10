@@ -535,10 +535,13 @@ class PosController
             "callback" => $callback
         );
         $response = $this->coreUtils->post(Config::CHECKOUT_STK_, $packet);
+        $this->log->info(Config::info, -1,
+            "Response from  "
+            . "mpesa checkout request " . json_encode($response));
         $mpesaResponse = json_decode($response, TRUE);
         $this->log->info(Config::info, -1,
             "Response from  "
-            . "mpesa checkout request " . $this->log->printArray($mpesaResponse));
+            . "mpesa checkout request array " . $this->log->printArray($mpesaResponse));
     }
 
     /**
