@@ -84,6 +84,7 @@ class PosController
         $message = $this->coreUtils->formatMessage(Config::START_SESSION,
             $accountData);
         if ($diff > 0 && $accountData['processingStatus'] != Config::ACTIVE){
+            $this->log->debug(Config::debug, -1, "start session");
             // expiry date is in future ..start a session.
 //            die($message . " ". strlen($message));
             $this->startSession($accountData['customerProfileAccountID'],
@@ -92,6 +93,7 @@ class PosController
             return Config::MAX_TIME;
          }
         if ($diff > 0 && $accountData['processingStatus'] == Config::ACTIVE){
+            $this->log->debug(Config::debug, -1, "active account");
             //ACTIVE  session. ..STOP IT
             $this->stopSession($accountData['customerProfileAccountID']);
             $message = $this->coreUtils->formatMessage(Config::STOP_SESSION,
@@ -100,11 +102,14 @@ class PosController
             return Config::SESSION_END;
          }
         if ($diff <= 0){
+            $this->log->debug(Config::debug, -1, "Expired account");
             // expiry date is in future ..start a session.
 //            die($message . " ". strlen($message));
+            $message = $this->coreUtils->formatMessage(Config::EXPIRED_ACCOUNT,
+                $accountData);
             $this->coreUtils->logSMS("account expired", $msisdn, $message, 1);
             $this->initiateCheckoutSTK($accountData);
-            return Config::MAX_TIME;
+            return Config::FAILED_RESPONSE;
          } else{
             $this->coreUtils->logSMS("card expired", $msisdn, $message, 2);
             //card expired
