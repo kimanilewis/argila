@@ -528,12 +528,15 @@ class PosController
         $callback = Config::MPESA_CALLBACK;
 
         $packet = array(
-            "account_reference" => $transaction_id,
+            "transaction_desc" => $transaction_id,
             "account_reference" => $reference_id,
             "amount" => $amount,
             "msisdn" => $phone,
             "callback" => $callback
         );
+        $this->log->info(Config::info, -1,
+            "Request sent to initiate  "
+            . "mpesa checkout request " . $this->log->printArray($packet));
         $response = $this->coreUtils->post(Config::CHECKOUT_STK_, $packet);
         $this->log->info(Config::info, -1,
             "Response from  "

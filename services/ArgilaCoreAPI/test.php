@@ -7,7 +7,7 @@ $apiUrl = "http://68.168.102.159/argilaCore/index.php/pos";
 $password = "2018-04-11 20:55:22";
 
 $posRequest = '{"credentials":{"Token":"bigsquare998874","location_id":"1234ABCB"},'
-    . '"payload":{"accountNumber":"394687UJ","batteryLevel":"1030","source":"pos"}}';
+    . '"payload":{"accountNumber":"12345AAA","batteryLevel":"1030","source":"pos"}}';  //394687UJ
 $userRequest = array(
     'source' => 'pos',
     'batteryLevel' => '10',
