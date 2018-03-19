@@ -529,7 +529,7 @@ class PosController
 
         $packet = array(
             "transaction_desc" => $transaction_id,
-            "account_reference" => $reference_id,
+            "account_reference" => $params['accountNumber'],
             "amount" => $amount,
             "msisdn" => $phone,
             "callback" => $callback
