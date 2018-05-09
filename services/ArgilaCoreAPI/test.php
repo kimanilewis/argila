@@ -1,13 +1,15 @@
 <?php
 
 //$apiUrl = "http://68.168.102.159/argilaCore/index.php/mpesa_request";
-$apiUrl = "http://68.168.102.159/argilaCore/index.php/pos";
+//$apiUrl = "http://68.168.102.159/argilaCore/index.php/pos";
 //$apiUrl = "http://10.8.0.2/argilaCore/index.php/pos";
+$apiUrl = "http://localhost/argilaCore/index.php/pos";
 
 $password = "2018-04-11 20:55:22";
 
-$posRequest = '{"credentials":{"Token":"bigsquare998874","location_id":"1234ABCB"},'
-    . '"payload":{"accountNumber":"12345AAA","batteryLevel":"1030","source":"pos"}}';  //394687UJ
+ $posRequest='eyJjcmVkZW50aWFscyI6eyJUb2tlbiI6ImJpZ3NxdWFyIiwibG9jYXRpb25faWQiOiIxMjNRV0UifSwicGF5bG9hZCI6eyJhY2NvdW50TnVtYmVyIjoiOTIwQjY1MTMiLCJiYXR0ZXJ5TGV2ZWwiOiIwMCIsInNvdXJjZSI6InBvcyJ9fQ==';
+//$posRequest = '{"credentials":{"Token":"bigsquare998874","location_id":"1234ABCB"},'
+//        . '"payload":{"accountNumber":"12345AAA","batteryLevel":"1030","source":"pos"}}';  //394687UJ
 $userRequest = array(
     'source' => 'pos',
     'batteryLevel' => '10',

@@ -44,12 +44,17 @@ class RoutesController {
      */
     public function run($request, $response) {
         $requestRaw = $request->body();
+        $this->log->info(Config::info, -1, "Received $route request  with parameters :"
+                . $this->log->printArray($requestRaw));
         $requestData = $this->RC4Decrypt($requestRaw);
+        $this->log->info(Config::info, -1, "Received $requestData  :"
+                . $this->log->printArray($this->data));
         $route = $request->params()[0];
         $route = str_replace("/", "", $route);
         $this->data = json_decode($requestData, true);
         $this->log->info(Config::info, -1, "Received $route request  with parameters :"
                 . $this->log->printArray($this->data));
+
         $this->data['route'] = $route;
         $this->response = $response;
         $this->log->info(Config::info, -1, "Server Request : "
@@ -69,18 +74,18 @@ class RoutesController {
         }
 
         header('Content-Type: application/json');
-        echo json_encode($this->response);
+        echo json_encode($this->RC4Encrypt($this->response));
     }
 
-    private function RC4Decrypt($param) {
-        return $this->RC4Encrypt($request);
+    private function RC4Decrypt($request) {
+        return base64_decode($this->RC4Encrypt($this->RC4Encrypt($request)));
     }
 
     public function RC4Encrypt($request) {
         $key = Config::RC4_KEY;
         $td = mcrypt_module_open('arcfour', '', 'stream', '');
         mcrypt_generic_init($td, $key, null);
-        $encrypted = mcrypt_generic($td, $msg);
+        $encrypted = mcrypt_generic($td, $request);
         mcrypt_generic_deinit($td);
         mcrypt_module_close($td);
         return $encrypted;
