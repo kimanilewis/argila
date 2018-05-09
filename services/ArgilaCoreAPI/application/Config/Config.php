@@ -6,8 +6,7 @@ Namespace Argila\ArgilaCoreAPI\Config;
  * * Application configs 
  * * @author Lewis Kimani   <kimanilewi@gmail.com>
  * */
-class Config
-{
+class Config {
 
     ////
     const DbHost = 'localhost';
@@ -44,6 +43,7 @@ class Config
     const MAX_MINUTES = 45;
     const ACTIVE = 1;
     const CREATED = 2;
+    const RC4_KEY = "0Kh1R78rhfargilatech7EozofHn7H";
     //Mpesa 
     const SUCCESSFUL_MPESA_REQUEST = 0;
     const FAILED_MPESA_REQUEST = -1;

@@ -13,8 +13,7 @@ use Argila\ArgilaCoreAPI\Config\StatusCodes as StatusCodes;
 use Argila\ArgilaCoreAPI\Utilities\Authenticator as Authenticator;
 use Exception;
 
-class RoutesController
-{
+class RoutesController {
 
     /**
      * @var logger
@@ -44,37 +43,47 @@ class RoutesController
      * runs the application
      */
     public function run($request, $response) {
-        $requestData = $request->body();
+        $requestRaw = $request->body();
+        $requestData = $this->RC4Decrypt($requestRaw);
         $route = $request->params()[0];
         $route = str_replace("/", "", $route);
-        $this->data =  json_decode($requestData, true);
-        $this->log->info(Config::info, -1,
-            "Received $route request  with parameters :"
-            . $this->log->printArray( $this->data ));
+        $this->data = json_decode($requestData, true);
+        $this->log->info(Config::info, -1, "Received $route request  with parameters :"
+                . $this->log->printArray($this->data));
         $this->data['route'] = $route;
         $this->response = $response;
-        $this->log->info(Config::info, -1,
-            "Server Request : "
-            . $this->log->printArray($_SERVER));
+        $this->log->info(Config::info, -1, "Server Request : "
+                . $this->log->printArray($_SERVER));
         $resultCredentials = $this->authenticate($this->data['credentials']);
-        if ($resultCredentials["authStatusCode"] ===
-            StatusCodes::CLIENT_AUTHENTICATION_FAILED){
+        if ($resultCredentials["authStatusCode"] === StatusCodes::CLIENT_AUTHENTICATION_FAILED) {
             $this->response = array(
                 'authStatus' => $resultCredentials,
                 'results' => "");
-            $this->log->info(Config::info, -1,
-                "Authentication failed request. Response: "
-                . $this->log->printArray($resultCredentials));
-        } else{
+            $this->log->info(Config::info, -1, "Authentication failed request. Response: "
+                    . $this->log->printArray($resultCredentials));
+        } else {
             $result = $this->route($this->data);
-            $this->log->info(Config::info, -1,
-                " Controller request. Response: "
-                . $this->log->printArray($result));
+            $this->log->info(Config::info, -1, " Controller request. Response: "
+                    . $this->log->printArray($result));
             $this->response = $result;
         }
 
         header('Content-Type: application/json');
         echo json_encode($this->response);
+    }
+
+    private function RC4Decrypt($param) {
+        return $this->RC4Encrypt($request);
+    }
+
+    public function RC4Encrypt($request) {
+        $key = Config::RC4_KEY;
+        $td = mcrypt_module_open('arcfour', '', 'stream', '');
+        mcrypt_generic_init($td, $key, null);
+        $encrypted = mcrypt_generic($td, $msg);
+        mcrypt_generic_deinit($td);
+        mcrypt_module_close($td);
+        return $encrypted;
     }
 
     /**
@@ -96,9 +105,8 @@ class RoutesController
 
         $authentication = new Authenticator();
         $authResponse = $authentication->authenticate($credentials);
-        $this->log->debug(Config::debug, -1,
-            "Result from Authenctication: "
-            . $this->log->printArray($authResponse));
+        $this->log->debug(Config::debug, -1, "Result from Authenctication: "
+                . $this->log->printArray($authResponse));
         $aStat = $authResponse['statusInfo']['authStatusCode'];
         if ($aStat == null || $aStat != StatusCodes::CLIENT_AUTHENTICATED_SUCCESSFULLY
         ) {
@@ -119,9 +127,8 @@ class RoutesController
      */
     public function route($request) {
 
-        $this->log->debug(Config::debug, -1,
-            "Incoming Result  "
-            . $this->log->printArray($request));
+        $this->log->debug(Config::debug, -1, "Incoming Result  "
+                . $this->log->printArray($request));
         $result = array();
         switch (strtolower($request['route'])) {
 
@@ -133,7 +140,7 @@ class RoutesController
                 $servicesRequest = new MpesaController();
                 $result = $servicesRequest->processMpesaRequest($request);
                 break;
-             case 'mpesa_validate':
+            case 'mpesa_validate':
                 $servicesRequest = new MpesaController();
                 $result = $servicesRequest->validateMpesaRequest($request);
                 break;
@@ -142,9 +149,8 @@ class RoutesController
                 break;
         }
 
-        $this->log->debug(Config::debug, -1,
-            "Response Result...........  "
-            . $this->log->printArray($result));
+        $this->log->debug(Config::debug, -1, "Response Result...........  "
+                . $this->log->printArray($result));
         return $result;
     }
 
