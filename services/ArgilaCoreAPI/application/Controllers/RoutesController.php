@@ -43,10 +43,9 @@ class RoutesController {
      * runs the application
      */
     public function run($request, $response) {
-        $requestRaw = $request->body();
+        $requestData = $request->body();
         $this->log->info(Config::info, -1, "Received $route request  with parameters :"
-                . $this->log->printArray($requestRaw));
-        $requestData = $this->RC4Decrypt($requestRaw);
+                . $this->log->printArray($requestData));
         $this->log->info(Config::info, -1, "Received $requestData  :"
                 . $this->log->printArray($this->data));
         $route = $request->params()[0];
@@ -139,7 +138,8 @@ class RoutesController {
 
             case 'pos':
                 $SyncRequest = new PosController();
-                $result = $SyncRequest->processPosRequest($request);
+                $requestData = $this->RC4Decrypt($request);
+                $result = $SyncRequest->processPosRequest($requestData);
                 break;
             case 'mpesa_request':
                 $servicesRequest = new MpesaController();
