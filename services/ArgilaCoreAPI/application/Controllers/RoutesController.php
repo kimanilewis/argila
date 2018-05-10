@@ -74,7 +74,7 @@ class RoutesController {
         }
 
         header('Content-Type: application/json');
-        echo json_encode($this->RC4Encrypt($this->response));
+        echo json_encode($this->response);
     }
 
     private function RC4Decrypt($request) {
