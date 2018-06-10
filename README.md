@@ -25,5 +25,5 @@ This README would normally document whatever steps are necessary to get your app
 
 ### Who do I talk to? ###
 
-* Repo owner [kimanilewis](mailto:kimanilewi@gmail.com)
+* Repo owner [email](mailto:kimanilewi@gmail.com) , [twitter](https://twitter.com/lewiekimani)
 * Other community or team contact
